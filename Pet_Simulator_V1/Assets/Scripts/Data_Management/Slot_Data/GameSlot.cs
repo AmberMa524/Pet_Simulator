@@ -45,12 +45,7 @@ public class GameSlot : MonoBehaviour
     }
 
     public void StartGame() {
-        if(!empty){
-            GameEnvironment.LoadGame(hour, minute, second, year, month, day, location);
-            SceneManager.LoadScene(location);
-        } else {
             GameEnvironment.NewGame();
-            SceneManager.LoadScene("Home_Environment_Sprint_001");
-        }
+            SceneManager.LoadScene(GameEnvironment.HOME_SCENE);
     }
 }
