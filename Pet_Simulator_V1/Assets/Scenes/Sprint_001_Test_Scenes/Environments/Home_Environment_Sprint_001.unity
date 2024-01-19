@@ -465,9 +465,10 @@ GameObject:
   - component: {fileID: 285143454}
   - component: {fileID: 285143449}
   - component: {fileID: 285143453}
+  - component: {fileID: 285143455}
   m_Layer: 0
   m_Name: Test_Item
-  m_TagString: Clickable
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -578,6 +579,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 120
   m_CollisionDetection: 0
+--- !u!114 &285143455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 285143448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c934be39fa360af47bfb4578e1fd2a14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &317332072
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,7 +1044,9 @@ GameObject:
   m_Component:
   - component: {fileID: 572122075}
   - component: {fileID: 572122077}
+  - component: {fileID: 572122078}
   - component: {fileID: 572122076}
+  - component: {fileID: 572122079}
   m_Layer: 0
   m_Name: Chuki
   m_TagString: Pet
@@ -1084,6 +1099,33 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.24452, y: 7.289146, z: 3.5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &572122078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572122074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae6a1e67246a7bb4f963a04cf9c713df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxBound: 20
+  minBound: -20
+  GFXController: {fileID: 1548492164}
+--- !u!114 &572122079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572122074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19e074f8e2389924587aee4f5ac71f7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &600261405
 GameObject:
   m_ObjectHideFlags: 0
