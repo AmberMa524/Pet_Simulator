@@ -1,0 +1,105 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Interaction : MonoBehaviour
+{
+    /** Represents an interaction in the game, which will be posessed by every interactable
+     * object. This interaction will be passed into the pet's calculation functionality from
+     * the interactable object.
+     */
+
+    //Identifies the interaction in the game.
+    public int interactionID;
+
+    //Identifies the type of interaction in the game.
+    public string interactionType;
+
+    //Identifies the interaction subtype in the game.
+    public string interactionSubType;
+
+    //Provides a description of the interaction.
+    public string interactionName;
+
+    /** Interactive constructor. 
+     @param id
+     @param type
+     @param name
+    */
+
+    Interaction(int id, string type, string name, string sub)
+    {
+        setID(id);
+        setType(type);
+        setName(name);
+        setSub(sub);
+    }
+
+    /** Gets the id of the interaction. 
+     @return interactionID
+    */
+
+    public int getID()
+    {
+        return interactionID;
+    }
+
+    /** Gets the type of the interaction.
+     @return interactionType
+    */
+
+    public string getType()
+    {
+        return interactionType;
+    }
+
+    /** Gets the name of the interaction.
+     @return interactionName
+    */
+
+    public string getName()
+    {
+        return interactionName;
+    }
+
+    /** Gets the subtype of the interaction.
+         @return interactionSubType
+        */
+
+    public string getSub()
+    {
+        return interactionSubType;
+    }
+
+    /** Sets the ID of the interaction.
+     @param id*/
+
+    public void setID(int id)
+    {
+        interactionID = id;
+    }
+
+    /** Sets the type of the interaction.
+    @param type*/
+
+    public void setType(string type)
+    {
+        interactionType = type;
+    }
+
+    /** Sets the name of the interaction.
+    @param name*/
+
+    public void setName(string name)
+    {
+        interactionName = name;
+    }
+
+    /** Sets the sub type of the interaction.
+    @param sub*/
+
+    public void setSub(string sub)
+    {
+        interactionSubType = sub;
+    }
+}

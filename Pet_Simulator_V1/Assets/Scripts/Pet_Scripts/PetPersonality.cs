@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class PetPersonality : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    /** Contains a list of traits belonging to the pet, which cannot be altered or manipulated
+     after being generated. */
+
+    public List<Trait> traitList;
+
+    PetPersonality() { 
+    
+    }
+    /**
+    public List<Trait> getTraitList() { 
+    
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    public Trait getTrait(string name) { 
         
     }
+    */
 }

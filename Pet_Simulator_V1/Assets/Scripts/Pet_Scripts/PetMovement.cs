@@ -136,7 +136,6 @@ public class PetMovement : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(idle);
         if (collision.gameObject.tag == "Item")
         {
             idle = false;
