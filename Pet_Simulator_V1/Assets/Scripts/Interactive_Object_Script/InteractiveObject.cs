@@ -93,7 +93,7 @@ public class InteractiveObject : MonoBehaviour
         {
             if (touchingPet)
             {
-                GameObject.FindGameObjectsWithTag("Pet")[0].GetComponent<PetMain>().interaction(animation);
+                GameObject.FindGameObjectsWithTag("Pet")[0].GetComponent<PetMain>().interaction(animation, interaction);
             }
             touchingPet = false;
             grabbed = false;

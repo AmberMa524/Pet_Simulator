@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PetMain : MonoBehaviour
 {
+    /** This is the pet's main controller, which will contain its memories,
+     behaviours, and personality. The interactions and calculations will be
+    performed through this script.*/
 
     //Animation Values
     //Manipulates animations for pet.
@@ -24,8 +27,16 @@ public class PetMain : MonoBehaviour
         
     }
 
-    public void interaction(int animation) {
+    /** This is triggered when an interactive object interacts with the pet.
+     It gets passed into the pet state AI so that the needs that the interaction is supposed
+    to meet are satisfied.
+    @param animation
+    @param interact
+    */
+
+    public void interaction(int animation, Interaction interact) {
         animator.SetInteger("Animation_Part", animation);
-        Debug.Log("Pet Interaction");
+        this.GetComponent<PetState>().processInteraction(interact);
+        //Debug.Log("Pet Interaction");
     }
 }

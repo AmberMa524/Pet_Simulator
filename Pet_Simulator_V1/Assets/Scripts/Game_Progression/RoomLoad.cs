@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RoomLoad : MonoBehaviour
 {
-    // Start is called before the first frame update
+    /** The clock starts as soon as the room loads again.*/
     void Start()
     {
         GameEnvironment.StartClock();
