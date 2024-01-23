@@ -11,7 +11,8 @@ using UnityEngine;
 
 public class GameEnvironment : MonoBehaviour
 {
-    public const string HOME_SCENE = "Home_Environment_Sprint_001";
+    //UNCOMMENT WHEN GAME IS FINALIZED:
+    //public const string HOME_SCENE = "Home_Environment_Sprint_001";
 
     //Singular instance of game environment.
     public static GameEnvironment Instance;
@@ -42,7 +43,10 @@ public class GameEnvironment : MonoBehaviour
         //When a new game starts, the time and date is switched back to default settings.
         inGameTime.resetTime();
         //The location defaults to the home scene.
-        location = HOME_SCENE;
+        //Uncomment When Finalized
+        //location = HOME_SCENE;
+        //Remove when finalized.
+        location = "";
     }
 
     // FixedUpdate is called once per frame and updates the time accordingly.

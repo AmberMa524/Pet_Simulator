@@ -30,6 +30,9 @@ public class GameSlot : MonoBehaviour
     public TMP_Text ts_text;
     public TMP_Text lc_text;
 
+    //REMOVE WHEN GAME IS FINALIZED.
+    public string TEMP_HOME_SCENE;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +49,10 @@ public class GameSlot : MonoBehaviour
 
     public void StartGame() {
             GameEnvironment.NewGame();
-            SceneManager.LoadScene(GameEnvironment.HOME_SCENE);
+            //UNCOMMENT WHEN GAME IS FINALIZED
+            //SceneManager.LoadScene(GameEnvironment.HOME_SCENE);
+
+            //REMOVE WHEN GAME IS FINALIZED
+            SceneManager.LoadScene(TEMP_HOME_SCENE);
     }
 }

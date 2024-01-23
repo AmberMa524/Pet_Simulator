@@ -2379,7 +2379,7 @@ MonoBehaviour:
   fn_text: {fileID: 114758984}
   ts_text: {fileID: 1238606139}
   lc_text: {fileID: 1575494428}
-  TEMP_HOME_SCENE: Home_Environment_Sprint_001
+  TEMP_HOME_SCENE: Home_Environment_Sprint_002
 --- !u!114 &1754864132
 MonoBehaviour:
   m_ObjectHideFlags: 0

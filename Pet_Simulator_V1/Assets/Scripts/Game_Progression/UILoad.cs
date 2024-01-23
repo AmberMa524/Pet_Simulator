@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UILoad : MonoBehaviour
 {
-    // Start is called before the first frame update
+    /** The in game clock freezes whenever a UI screen is loaded. */
     void Start()
     {
         GameEnvironment.StopClock();
