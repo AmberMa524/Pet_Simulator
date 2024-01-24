@@ -45,7 +45,7 @@ public class InteractiveObject : MonoBehaviour
     ////////////////////////////////
 
     //Represents the index of the animation that should play upon interaction.
-    public int animation;
+    public int ani_num;
 
     /**
      * When the game starts the item is marked as ungrabbed. 
@@ -93,7 +93,7 @@ public class InteractiveObject : MonoBehaviour
         {
             if (touchingPet)
             {
-                GameObject.FindGameObjectsWithTag("Pet")[0].GetComponent<PetMain>().interaction(animation, interaction);
+                GameObject.FindGameObjectsWithTag("Pet")[0].GetComponent<PetMain>().interaction(ani_num, interaction);
             }
             touchingPet = false;
             grabbed = false;
