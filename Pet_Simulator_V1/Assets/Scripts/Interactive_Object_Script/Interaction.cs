@@ -27,7 +27,7 @@ public class Interaction : MonoBehaviour
      @param name
     */
 
-    Interaction(int id, string type, string name, string sub)
+    public Interaction(int id, string type, string name, string sub)
     {
         setID(id);
         setType(type);

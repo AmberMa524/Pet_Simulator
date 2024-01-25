@@ -5,7 +5,7 @@ using UnityEngine;
 /** Manages the current date in the game including
  days, months, and years.*/
 
-public class GameCalendar : MonoBehaviour
+public class GameCalendar
 {
    //Const determining the maximum months in a year.
     private const int MAX_MONTHS = 12;

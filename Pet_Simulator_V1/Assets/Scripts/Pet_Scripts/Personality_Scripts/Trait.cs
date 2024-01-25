@@ -51,7 +51,6 @@ public class Trait : MonoBehaviour
     public void randomTraitGeneration() {
         for (int i = 0; i < subTraitList.Count; i++) {
             int randomNumber = Random.Range(0, PREFERENCE_RANGE);
-            Debug.Log("Random Number Is" + randomNumber);
             subTraitList[i].setValue(randomNumber);
         }
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 /** Manages a calendar and a clock to work in tandum with
  each other.*/
 
-public class GameTime : MonoBehaviour
+public class GameTime
 {
     //Represents the maximum hours in a day.
     private const int MAX_HOUR = 24;

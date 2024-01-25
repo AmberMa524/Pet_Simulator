@@ -5,7 +5,7 @@ using UnityEngine;
 /** Manages the current time in the game including
  seconds, minutes, and hours.*/
 
-public class GameClock : MonoBehaviour
+public class GameClock
 {
     //Const determining the maximum minutes in an hour.
     private const int MAX_MINUTES = 60;
