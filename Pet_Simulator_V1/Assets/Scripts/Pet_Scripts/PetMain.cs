@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class PetMain : MonoBehaviour
 {
-    /** This is the pet's main controller, which will contain its memories,
-     behaviours, and personality. The interactions and calculations will be
-    performed through this script.*/
+    /** This is the pet's main controller, which will control its memories.
+     * The interactions and calculations will be performed through this script.*/
 
     //Animation Values
     //Manipulates animations for pet.
@@ -57,7 +56,7 @@ public class PetMain : MonoBehaviour
         //Adds the memory to the pet's collection of memories.
         memories.addMemory(insertMemory);
         //memories.printMemoryList();
-        gameObject.GetComponent<PetPersonality>().processInteraction(interact, memories);
+        gameObject.GetComponent<PetBehaviour>().processInteraction(interact, memories, newTime);
         //gameObject.GetComponent<PetPersonality>().getPreferenceManager().printPreferences();
     }
 }

@@ -1390,6 +1390,7 @@ GameObject:
   - component: {fileID: 572122078}
   - component: {fileID: 572122080}
   - component: {fileID: 572122081}
+  - component: {fileID: 572122082}
   m_Layer: 0
   m_Name: Chuki
   m_TagString: Pet
@@ -1501,6 +1502,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   traitList: []
+--- !u!114 &572122082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572122074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94e6ad7b554259e4682d1ea7b15a3986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &600261405
 GameObject:
   m_ObjectHideFlags: 0
