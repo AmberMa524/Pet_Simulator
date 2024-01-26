@@ -6,7 +6,12 @@ public class Interaction : MonoBehaviour
 {
     /** Represents an interaction in the game, which will be posessed by every interactable
      * object. This interaction will be passed into the pet's calculation functionality from
-     * the interactable object.
+     * the interactable object. Interactions will contain a value called a type, which determines
+     * what need the action will satisfy for the pet. The subtype indicates what kind of taste
+     * or sensibility it appeals to. The pet's tastes and sensibilities are determined by their
+     * subtraits. Depending on the pet's tastes and how frequently the pet has interacted with
+     * this interaction (determined through its' memories), the pet may prefer this interaction
+     * and this preference would be reflected in the pet's status.
      */
 
     //Identifies the interaction in the game.

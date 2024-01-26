@@ -57,5 +57,7 @@ public class PetMain : MonoBehaviour
         //Adds the memory to the pet's collection of memories.
         memories.addMemory(insertMemory);
         //memories.printMemoryList();
+        gameObject.GetComponent<PetPersonality>().processInteraction(interact, memories);
+        //gameObject.GetComponent<PetPersonality>().getPreferenceManager().printPreferences();
     }
 }
