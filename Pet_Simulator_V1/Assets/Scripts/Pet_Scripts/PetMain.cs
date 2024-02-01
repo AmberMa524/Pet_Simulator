@@ -16,12 +16,29 @@ public class PetMain : MonoBehaviour
     //A pet memory object to hold all of the pet's memories.
     private PetMemories memories;
 
-    // Start is called before the first frame update
+    //There can only be one instance of the pet at a time.
+    public static PetMain Instance;
+
+    /**
+    Sets up the pet's memories and animation controller.
+    Specifies to not destroy the pet upon loading the next scene in the game.
+    Pet should be terminated when the game terminates.
+    Only one pet can exist at a time.
+    */
     void Start()
     {
+        // start of new code
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
         //Gets the animator located in the GFX.
         animator = GFXController.GetComponent<Animator>();
         memories = new PetMemories();
+        DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame

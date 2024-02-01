@@ -32,6 +32,9 @@ public class State : MonoBehaviour
     //Determines how much this need is satiated.
     public int stateLevel;
 
+    //If the game is paused, the state will not update.
+    public bool pause;
+
     //Represents the interval of time (in seconds)
     //that it takes for the state to decrement.
     public int interval;
@@ -57,6 +60,7 @@ public class State : MonoBehaviour
     void Start(){
         stateLevel = MAX_LEVEL;
         time = interval*60;
+        pause = false;
     }
 
     /** After a certain period of time, the level of 
@@ -66,16 +70,19 @@ public class State : MonoBehaviour
     */
 
     void Update() {
-        if (time <= 0)
-        {
-            if (stateLevel > MIN_LEVEL)
+        if (!pause) {
+            if (time <= 0)
             {
-                --stateLevel;
+                if (stateLevel > MIN_LEVEL)
+                {
+                    --stateLevel;
+                }
+                time = interval * 60;
             }
-            time = interval*60;
-        }
-        else {
-            --time;
+            else
+            {
+                --time;
+            }
         }
     }
 
@@ -139,6 +146,18 @@ public class State : MonoBehaviour
     public int getSpriteNumber()
     {
         return spriteNumber;
+    }
+
+    /** Pauses the state. */
+
+    public void pauseState() {
+        pause = true;
+    }
+
+    /** Unpauses the state. */
+
+    public void unpauseState() {
+        pause = false;
     }
 
 }

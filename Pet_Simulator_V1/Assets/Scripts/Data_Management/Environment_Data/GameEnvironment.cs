@@ -74,4 +74,13 @@ public class GameEnvironment : MonoBehaviour
     public static GameTime getGameTime() {
         return inGameTime;
     }
+
+    /** When a game is terminated, the pet will be terminated from the scene.
+     If the pet's data is not saved, it will be lost.
+    */
+
+    public static void terminateGame() {
+        Destroy(GameObject.FindGameObjectWithTag("Pet"));
+        Debug.Log("Terminated Game");
+    }
 }

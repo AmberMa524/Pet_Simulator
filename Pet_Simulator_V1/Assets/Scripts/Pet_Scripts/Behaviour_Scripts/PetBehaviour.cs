@@ -9,7 +9,7 @@ public class PetBehaviour : MonoBehaviour
     //A preference manager object, which manages the pet's preferences.
     private PreferenceManager preferenceManager;
 
-
+    //A learned behaviour manager that manages all of the pet's learned behaviours.
     private LearnedBehaviourManager learnedBehaviourManager;
 
     // Start is called before the first frame update
