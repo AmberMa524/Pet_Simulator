@@ -12,7 +12,7 @@ using UnityEngine;
 public class GameEnvironment : MonoBehaviour
 {
     //UNCOMMENT WHEN GAME IS FINALIZED:
-    //public const string HOME_SCENE = "Home_Environment_Sprint_001";
+    public const string HOME_SCENE = "Home";
 
     //Singular instance of game environment.
     public static GameEnvironment Instance;
@@ -44,9 +44,9 @@ public class GameEnvironment : MonoBehaviour
         inGameTime.resetTime();
         //The location defaults to the home scene.
         //Uncomment When Finalized
-        //location = HOME_SCENE;
+        location = HOME_SCENE;
         //Remove when finalized.
-        location = "";
+        //location = "";
     }
 
     // FixedUpdate is called once per frame and updates the time accordingly.

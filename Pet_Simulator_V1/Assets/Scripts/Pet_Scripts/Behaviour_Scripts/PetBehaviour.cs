@@ -52,5 +52,6 @@ public class PetBehaviour : MonoBehaviour
         preferenceManager.setPreference(interact);
         learnedBehaviourManager.addLearnedBehaviour(newBehaviour);
         learnedBehaviourManager.printBehaviours();
+        //preferenceManager.printPreferences();
     }
 }

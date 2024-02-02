@@ -15,6 +15,9 @@ public class UILoad : MonoBehaviour
             states[i].GetComponent<State>().pauseState();
         }
         GameObject.FindGameObjectWithTag("Pet").GetComponent<Rigidbody>().useGravity = false;
+        GameObject.FindGameObjectWithTag("Pet").GetComponent<PetMovement>().pauseMovement();
+        GameObject.FindGameObjectWithTag("Pet").GetComponent<PetBehaviour>().getPreferenceManager().printPreferences();
+
     }
 
     public void terminateGame() {

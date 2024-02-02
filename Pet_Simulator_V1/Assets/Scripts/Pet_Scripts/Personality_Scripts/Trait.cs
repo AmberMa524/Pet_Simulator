@@ -83,4 +83,10 @@ public class Trait : MonoBehaviour
     {
         return subTraitList.Find(x => x.getName() == name);
     }
+
+    /** Returns the subtrait list from the trait. */
+
+    public List<SubTrait> getSubTraitList() {
+        return subTraitList;
+    }
 }

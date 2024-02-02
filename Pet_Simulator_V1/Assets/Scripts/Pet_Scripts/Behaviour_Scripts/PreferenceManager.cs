@@ -11,7 +11,7 @@ public class PreferenceManager
 
     /** Maintains a list of preferences, which can be added to during the game.*/
 
-    List<Preference> preferenceList;
+    private List<Preference> preferenceList;
 
     /** Preference Manager default constructor. */
     public PreferenceManager()
@@ -56,5 +56,13 @@ public class PreferenceManager
             //Debug.Log("Preference " + i + ": " + typeVal + "\n"
             //    + "Interaction Name: " + preferenceList[i].getInteraction().getName() + "\n");
         }
+    }
+
+    /** Get the preference list.
+     @retrn preferenceList
+    */
+
+    public List<Preference> getPreferenceList() {
+        return preferenceList;
     }
 }

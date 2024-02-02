@@ -31,6 +31,8 @@ public class PetMovement : MonoBehaviour
     private int idleCount;
     //If true, the pet moves left, if false, the pet moves right.
     private bool direction;
+    //Determines whether or not the pet's movement is paused.
+    private bool paused;
 
     //Animation Values
     //Manipulates animations for pet.
@@ -49,17 +51,20 @@ public class PetMovement : MonoBehaviour
         idleCount = IDLE_COUNT;
         idle = true;
         direction = true;
+        paused = false;
     }
 
     /** It detects the current state of the pet and makes alterations to its
-     * movement in accordance with the pet's state.*/
+     * movement in accordance with the pet's state. If the pet's movement is
+     paused, the pet will not move.*/
     void Update()
     {
-        if (idle)
-        {
-            idleState();
+        if (!paused) {
+            if (idle)
+            {
+                idleState();
+            }
         }
-        
     }
 
     /** 
@@ -154,5 +159,17 @@ public class PetMovement : MonoBehaviour
             idle = true;
             animator.SetInteger("Animation_Part", 0);
         }
+    }
+
+    /** Pauses the pet's movement. */
+
+    public void pauseMovement() {
+        paused = true;
+    }
+
+    /** Unpauses the pet's movement. */
+
+    public void unpauseMovement() {
+        paused = false;
     }
 }

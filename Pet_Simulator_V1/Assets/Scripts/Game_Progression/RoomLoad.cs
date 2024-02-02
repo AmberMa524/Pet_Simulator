@@ -16,6 +16,7 @@ public class RoomLoad : MonoBehaviour
             states[i].GetComponent<State>().unpauseState();
         }
         GameObject.FindGameObjectWithTag("Pet").GetComponent<Rigidbody>().useGravity = true;
+        GameObject.FindGameObjectWithTag("Pet").GetComponent<PetMovement>().unpauseMovement();
     }
 
 }
