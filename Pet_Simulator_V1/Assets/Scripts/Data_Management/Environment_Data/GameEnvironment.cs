@@ -23,6 +23,9 @@ public class GameEnvironment : MonoBehaviour
     //Location (The area in the map where the player last left off).
     public static string location;
 
+    //Determines the color of the text.
+    public static Color textColor;
+
     private void Awake() {
         if (Instance != null) {
             Destroy(gameObject);
@@ -45,6 +48,8 @@ public class GameEnvironment : MonoBehaviour
         //The location defaults to the home scene.
         //Uncomment When Finalized
         location = HOME_SCENE;
+        //Text color is black by default.
+        textColor = Color.black;
         //Remove when finalized.
         //location = "";
     }
@@ -82,5 +87,33 @@ public class GameEnvironment : MonoBehaviour
     public static void terminateGame() {
         Destroy(GameObject.FindGameObjectWithTag("Pet"));
         Debug.Log("Terminated Game");
+    }
+
+    /** Changes the current location to a new location.
+     @param newLoc*/
+
+    public static void changeLocation(string newLoc) {
+        location = newLoc;
+    }
+
+    /** Gets the current location of the game. */
+
+    public static string getLocation() {
+        return location;
+    }
+
+    /** Changes the current text color to a new color.
+     @param newCol*/
+
+    public static void changeColor(Color newCol)
+    {
+        textColor = newCol;
+    }
+
+    /** Gets the current color of the game. */
+
+    public static Color getColor()
+    {
+        return textColor;
     }
 }

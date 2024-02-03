@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UILoad : MonoBehaviour
 {
@@ -16,8 +17,11 @@ public class UILoad : MonoBehaviour
         }
         GameObject.FindGameObjectWithTag("Pet").GetComponent<Rigidbody>().useGravity = false;
         GameObject.FindGameObjectWithTag("Pet").GetComponent<PetMovement>().pauseMovement();
-        GameObject.FindGameObjectWithTag("Pet").GetComponent<PetBehaviour>().getPreferenceManager().printPreferences();
+        //GameObject.FindGameObjectWithTag("Pet").GetComponent<PetBehaviour>().getPreferenceManager().printPreferences();
+    }
 
+    public void returnToGame() {
+        SceneManager.LoadScene(GameEnvironment.getLocation());
     }
 
     public void terminateGame() {

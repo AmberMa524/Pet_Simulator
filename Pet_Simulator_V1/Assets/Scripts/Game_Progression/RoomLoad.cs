@@ -5,7 +5,11 @@ using UnityEngine;
 public class RoomLoad : MonoBehaviour
 {
     /** The clock starts as soon as the room loads again.
-     All the states reawaken, and the pet's physics kick in again.*/
+     All the states reawaken, and the pet's physics kick in again.
+    The location data is loaded to the environment for use later.
+    */
+
+    public string locationName;
 
     void Start()
     {
@@ -17,6 +21,7 @@ public class RoomLoad : MonoBehaviour
         }
         GameObject.FindGameObjectWithTag("Pet").GetComponent<Rigidbody>().useGravity = true;
         GameObject.FindGameObjectWithTag("Pet").GetComponent<PetMovement>().unpauseMovement();
+        GameEnvironment.changeLocation(locationName);
     }
 
 }

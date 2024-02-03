@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Interaction : MonoBehaviour
+public class Interaction
 {
     /** Represents an interaction in the game, which will be posessed by every interactable
      * object. This interaction will be passed into the pet's calculation functionality from

@@ -32,6 +32,22 @@ public class InteractiveObject : MonoBehaviour
 
     private bool touchingPet;
 
+    //Identifies the interaction in the game.
+
+    public int interactionID;
+
+    //Identifies the type of interaction in the game.
+
+    public string interactionType;
+
+    //Identifies the interaction subtype in the game.
+
+    public string interactionSubType;
+
+    //Provides a description of the interaction.
+
+    public string interactionName;
+
     ////////////////////////////////
     /////Interaction Components/////
     ////////////////////////////////
@@ -56,7 +72,7 @@ public class InteractiveObject : MonoBehaviour
         grabbed = false;
         touchingPet = false;
         initPos = transform.position;
-        interaction = gameObject.GetComponent<Interaction>();
+        interaction = new Interaction(interactionID, interactionType, interactionName, interactionSubType);
     }
 
     /** The game determines if the item was grabbed or not. If it was grabbed,
