@@ -11,6 +11,8 @@ public class RoomLoad : MonoBehaviour
 
     public string locationName;
 
+    public int roomSong;
+
     void Start()
     {
         GameEnvironment.StartClock();
@@ -22,6 +24,9 @@ public class RoomLoad : MonoBehaviour
         GameObject.FindGameObjectWithTag("Pet").GetComponent<Rigidbody>().useGravity = true;
         GameObject.FindGameObjectWithTag("Pet").GetComponent<PetMovement>().unpauseMovement();
         GameEnvironment.changeLocation(locationName);
+        MusicController.PauseMusic();
+        MusicController.changeSong(roomSong);
+        MusicController.StartMusic();
     }
 
 }

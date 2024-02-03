@@ -17,6 +17,7 @@ public class UILoad : MonoBehaviour
         }
         GameObject.FindGameObjectWithTag("Pet").GetComponent<Rigidbody>().useGravity = false;
         GameObject.FindGameObjectWithTag("Pet").GetComponent<PetMovement>().pauseMovement();
+        //MusicController.PauseMusic();
         //GameObject.FindGameObjectWithTag("Pet").GetComponent<PetBehaviour>().getPreferenceManager().printPreferences();
     }
 
@@ -26,5 +27,6 @@ public class UILoad : MonoBehaviour
 
     public void terminateGame() {
         GameEnvironment.terminateGame();
+        MusicController.StopMusic();
     }
 }

@@ -35,6 +35,7 @@ public class AudioController : MonoBehaviour
         if (gameSounds.Length > 0) {
             if (soundInt < 0 || soundInt > gameSounds.Length - 1)
             {
+                Debug.Log("sound Played");
                 gameSounds[soundInt].Play();
             }
         }
