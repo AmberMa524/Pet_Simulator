@@ -26,18 +26,23 @@ public class Interaction
     //Provides a description of the interaction.
     public string interactionName;
 
+    //Provides the index of the sprite associated with the interaction.
+    public int interactionSpriteIndex;
+
     /** Interactive constructor. 
      @param id
      @param type
      @param name
+     @param sprite
     */
 
-    public Interaction(int id, string type, string name, string sub)
+    public Interaction(int id, string type, string name, string sub, int sprite)
     {
         setID(id);
         setType(type);
         setName(name);
         setSub(sub);
+        setSprite(sprite);
     }
 
     /** Gets the id of the interaction. 
@@ -76,6 +81,15 @@ public class Interaction
         return interactionSubType;
     }
 
+    /** Gets the sprite of the interaction.
+     @return interactionSpriteIndex
+    */
+
+    public int getSprite()
+    {
+        return interactionSpriteIndex;
+    }
+
     /** Sets the ID of the interaction.
      @param id*/
 
@@ -106,5 +120,14 @@ public class Interaction
     public void setSub(string sub)
     {
         interactionSubType = sub;
+    }
+
+    /** Sets the sprite index. of the interaction.
+    @param sprite
+    */
+
+    public void setSprite(int sprite)
+    {
+        interactionSpriteIndex = sprite;
     }
 }

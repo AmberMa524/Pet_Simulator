@@ -44,6 +44,10 @@ public class InteractiveObject : MonoBehaviour
 
     public string interactionSubType;
 
+    //Identifies the interaction sprite index in the game.
+
+    public int interactionSpriteIndex;
+
     //Provides a description of the interaction.
 
     public string interactionName;
@@ -72,7 +76,7 @@ public class InteractiveObject : MonoBehaviour
         grabbed = false;
         touchingPet = false;
         initPos = transform.position;
-        interaction = new Interaction(interactionID, interactionType, interactionName, interactionSubType);
+        interaction = new Interaction(interactionID, interactionType, interactionName, interactionSubType, interactionSpriteIndex);
     }
 
     /** The game determines if the item was grabbed or not. If it was grabbed,

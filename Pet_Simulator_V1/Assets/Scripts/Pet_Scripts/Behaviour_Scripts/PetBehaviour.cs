@@ -12,7 +12,11 @@ public class PetBehaviour : MonoBehaviour
     //A learned behaviour manager that manages all of the pet's learned behaviours.
     private LearnedBehaviourManager learnedBehaviourManager;
 
-    // Start is called before the first frame update
+    //Represents the pet's thought bubble, which will serve as its' prime behavior.
+    public GameObject thoughtWindow;
+
+    /** Sets up the learned behavior and preference managers. Preferences are
+     developed based on traits found in the pet's data.*/
     void Start()
     {
         learnedBehaviourManager = new LearnedBehaviourManager();
@@ -25,7 +29,12 @@ public class PetBehaviour : MonoBehaviour
                 preferenceManager.addPreference(new Preference(child.GetComponent<Trait>().getType()));
             }
         }
-        //preferenceManager.printPreferences();
+    }
+
+    /** Every second, the pet will attempt to perform a random action. */
+
+    void Update() {
+        performAction();
     }
 
     /** Gets the preference manager for the pet's personality.
@@ -52,5 +61,45 @@ public class PetBehaviour : MonoBehaviour
         preferenceManager.setPreference(interact);
         learnedBehaviourManager.addLearnedBehaviour(newBehaviour);
         learnedBehaviourManager.printBehaviours();
+    }
+
+    /** Utilizing the information found in the pet's state data, preference manager,
+     and learned behavior manager, the pet will suggest an interaction type. */
+
+    public void performAction() {
+        //Check if a pet has entered a state
+        PetState currentPetState = gameObject.GetComponent<PetState>();
+        if (currentPetState.isFound())
+        {
+            //If the pet is currently in a state, check what state it is.
+            //Then, depending on the type of state, check if the pet has any particular
+            //preference within that state.
+            string type = currentPetState.getState().getType();
+            Preference prefByType = preferenceManager.getPreferenceByType(type);
+            if (prefByType != null)
+            {
+                //If the preference has an interaction associated with it, then
+                //display the sprite for that interaction on the pet's window.
+                if (prefByType.getInteraction() != null)
+                {
+                    thoughtWindow.SetActive(true);
+                    GameObject.FindGameObjectWithTag("ThoughtElements").GetComponent<ThoughtSpriteChange>().ChangeSprite(prefByType.getInteraction().getSprite());
+                }
+                else {
+                    thoughtWindow.SetActive(false);
+                }
+            }
+            else {
+                thoughtWindow.SetActive(false);
+            }
+            //If so, then show the thought window with the preferred interaction on it.
+            //If not, then do not show the thought window (keep hidden).
+        }
+        else {
+            thoughtWindow.SetActive(false);
+            //If the pet is not in a state, then check if there is a regularly scheduled behavior for that
+            //time. If so, then show the interaction for that learned behavior on the thought bubble.
+            //If not, then keep the thought bubble hidden.
+        }
     }
 }

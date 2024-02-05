@@ -65,4 +65,13 @@ public class PreferenceManager
     public List<Preference> getPreferenceList() {
         return preferenceList;
     }
+
+    /** Gets a preference by type.
+     @return typeName
+    */
+
+    public Preference getPreferenceByType(string typeName) {
+        Preference foundPreference = preferenceList.Find(x => x.getType() == typeName);
+        return foundPreference;
+    }
 }

@@ -570,7 +570,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &220652228
 Transform:
   m_ObjectHideFlags: 0
@@ -713,6 +713,7 @@ MonoBehaviour:
   interactionID: 0
   interactionType: Taste
   interactionSubType: Sweet
+  interactionSpriteIndex: 14
   interactionName: Apple
   ani_num: 0
 --- !u!212 &285143457
@@ -1542,6 +1543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94e6ad7b554259e4682d1ea7b15a3986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thoughtWindow: {fileID: 220652227}
 --- !u!1 &600261405
 GameObject:
   m_ObjectHideFlags: 0
@@ -1572,6 +1574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   locationName: Home_Environment_Sprint_002
+  roomSong: 0
 --- !u!4 &600261407
 Transform:
   m_ObjectHideFlags: 0
@@ -3495,7 +3498,7 @@ GameObject:
   - component: {fileID: 1744843245}
   m_Layer: 0
   m_Name: Thought_Elements
-  m_TagString: Untagged
+  m_TagString: ThoughtElements
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3508,33 +3511,21 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1744843243}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.81, y: 3.32, z: -0.19999695}
-  m_LocalScale: {x: 0.089999996, y: 0.08999999, z: 1}
+  m_LocalPosition: {x: -2.84, y: 3.22, z: -1.43}
+  m_LocalScale: {x: 0.41, y: 0.48, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 220652228}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1744843245
-Animator:
-  serializedVersion: 5
+--- !u!222 &1744843245
+CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1744843243}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f33ad8ce982aa6d4c8eddea631ea4c9d, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
+  m_CullTransparentMesh: 1
 --- !u!114 &1744843246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3544,10 +3535,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1744843243}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f5f630b9323ba242ab9cb97080b6c95, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e909b915552d48428fa72b2a999e725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  freezeXZAxis: 1
+  spriteRenderer: {fileID: 1744843247}
+  spriteArray:
+  - {fileID: 21300000, guid: 35e11da4e88f08445a3d354cc9830c8e, type: 3}
+  - {fileID: 21300000, guid: e021bb96edea30c4caa69ceab862ef73, type: 3}
+  - {fileID: 21300000, guid: 5a2b5b30d20cebe45af1b3a3aeeab69c, type: 3}
+  - {fileID: 21300000, guid: 2cda0756a4655ca45a3a1cb5b7aa8b3c, type: 3}
+  - {fileID: 21300000, guid: 34f527d9e33fe744592ea18d2cb499cc, type: 3}
+  - {fileID: 21300000, guid: 8d208b70bcbe3204d9d73c2b6f7b1a88, type: 3}
+  - {fileID: 21300000, guid: c1e61d03c7861ec4180b8f0ea85432dc, type: 3}
+  - {fileID: 21300000, guid: 63ce04d0dd1d8cf449c579afedd5a893, type: 3}
+  - {fileID: 21300000, guid: d55e4883cdba13a458e262808f181641, type: 3}
+  - {fileID: 21300000, guid: 554588c85e5dbbb4ca314389f0d40c5f, type: 3}
+  - {fileID: 21300000, guid: fce8457fc2057a047bab2029b9e138b6, type: 3}
+  - {fileID: 21300000, guid: 184591481eb351348b46dcc9e14d6d79, type: 3}
+  - {fileID: 21300000, guid: 877a9491bc5034d4eac25d61068734bb, type: 3}
+  - {fileID: 21300000, guid: f22b708aaf8be3f448dc2d3d51d053ae, type: 3}
+  - {fileID: 21300000, guid: eefe0ba60a1dd3247a2d77ce16d0d9bc, type: 3}
 --- !u!212 &1744843247
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3589,12 +3596,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 362658657, guid: 329be87ce30e3ef47acfb0487caf167a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 35e11da4e88f08445a3d354cc9830c8e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 21.55, y: 21.651123}
+  m_Size: {x: 5.88, y: 4.15}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

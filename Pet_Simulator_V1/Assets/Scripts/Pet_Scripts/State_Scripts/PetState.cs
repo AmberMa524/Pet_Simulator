@@ -108,4 +108,20 @@ public class PetState : MonoBehaviour
             }
         }
     }
+
+    /** Returns true if an unsatiated need is found inside of the pet. 
+     @return found
+    */
+
+    public bool isFound() {
+        return found;
+    }
+
+    /** Returns the current state of the pet.
+     @return currentState
+    */
+
+    public State getState() {
+        return currentState;
+    }
 }
