@@ -4,10 +4,20 @@ using UnityEngine;
 
 public class PetBehaviour : MonoBehaviour
 {
+
     /** Manages the pet's preferences and learned behaviors. */
 
     //A preference manager object, which manages the pet's preferences.
     private PreferenceManager preferenceManager;
+
+    //Determines the bounds of time that the learned behavior may be recommended between.
+    public int LEARNED_BEHAVIOUR_ACTION_BOUNDS;
+
+    //Returns true if a learned behavior is currently executing;
+    private bool learnedBehaviorExecuting;
+
+    //Counts down the amount of miliseconds a learned behavior suggestion will come up for.
+    private int countDown;
 
     //A learned behaviour manager that manages all of the pet's learned behaviours.
     private LearnedBehaviourManager learnedBehaviourManager;
@@ -29,12 +39,23 @@ public class PetBehaviour : MonoBehaviour
                 preferenceManager.addPreference(new Preference(child.GetComponent<Trait>().getType()));
             }
         }
+        countDown = 0;
+        learnedBehaviorExecuting = false;
     }
 
     /** Every second, the pet will attempt to perform a random action. */
 
     void Update() {
-        performAction();
+        if (!learnedBehaviorExecuting)
+        {
+            performAction();
+        }
+        else {
+            countDown--;
+            if (countDown < 0) {
+                learnedBehaviorExecuting = false;
+            }
+        }
     }
 
     /** Gets the preference manager for the pet's personality.
@@ -96,10 +117,22 @@ public class PetBehaviour : MonoBehaviour
             //If not, then do not show the thought window (keep hidden).
         }
         else {
-            thoughtWindow.SetActive(false);
             //If the pet is not in a state, then check if there is a regularly scheduled behavior for that
-            //time. If so, then show the interaction for that learned behavior on the thought bubble.
+            //time. If so, then show the interaction for that learned behavior on the thought bubble for the time designated in the learned_behavior action bounds.
             //If not, then keep the thought bubble hidden.
+            GameTime currentTime = GameEnvironment.getGameTime();
+            GameClock currentClock = currentTime.getClock();
+            LearnedBehaviour search = learnedBehaviourManager.getBehaviourList().Find(x => x.getTime().getHour() == currentClock.getHour() && x.getTime().getMinute() == currentClock.getMinute());
+            if (search != null)
+            {
+                countDown = LEARNED_BEHAVIOUR_ACTION_BOUNDS;
+                thoughtWindow.SetActive(true);
+                GameObject.FindGameObjectWithTag("ThoughtElements").GetComponent<ThoughtSpriteChange>().ChangeSprite(search.getAction().getSprite());
+                learnedBehaviorExecuting = true;
+            }
+            else {
+                thoughtWindow.SetActive(false);
+            }
         }
     }
 }

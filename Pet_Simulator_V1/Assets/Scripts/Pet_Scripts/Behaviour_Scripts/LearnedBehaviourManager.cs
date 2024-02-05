@@ -41,4 +41,12 @@ public class LearnedBehaviourManager
                 + "Time : " + learnedBehaviourList[i].getTime().getHour() + ":" + learnedBehaviourList[i].getTime().getMinute());
         }
     }
+
+    /** Returns the behavior list.
+     @return learnedBehaviorList
+    */
+
+    public List<LearnedBehaviour> getBehaviourList() {
+        return learnedBehaviourList;
+    }
 }

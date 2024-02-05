@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class GameClock
 {
+    private const int SECOND_INCREMENT = 60;
+
     //Const determining the maximum minutes in an hour.
     private const int MAX_MINUTES = 60;
 
@@ -46,7 +48,7 @@ public class GameClock
     public void UpdateClock()
     {
         if (!isPaused()) {
-            timeSecond += 1;
+            timeSecond += SECOND_INCREMENT;
             //Every second, increment the number of seconds.
             //Note that the seconds will run faster in-game than in real life.
             if (timeSecond == MAX_SECONDS)
@@ -88,6 +90,16 @@ public class GameClock
 
     public int getSecond() {
         return timeSecond;
+    }
+
+    /** 
+     Sets the current hour on the clock.
+     @return timeSecond
+     */
+
+    public void setHour(int newhr)
+    {
+        timeHour = newhr;
     }
 
     /** Resets the clock to default.*/

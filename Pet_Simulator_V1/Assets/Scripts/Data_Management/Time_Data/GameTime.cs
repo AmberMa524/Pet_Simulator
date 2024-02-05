@@ -26,6 +26,7 @@ public class GameTime
     public void UpdateTime() {
         mainGClock.UpdateClock();
         if (mainGClock.getHour() == MAX_HOUR) {
+            mainGClock.setHour(0);
             mainGCal.incrementDay();
         }
     }

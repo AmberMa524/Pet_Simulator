@@ -1543,6 +1543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94e6ad7b554259e4682d1ea7b15a3986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LEARNED_BEHAVIOUR_ACTION_BOUNDS: 300
   thoughtWindow: {fileID: 220652227}
 --- !u!1 &600261405
 GameObject:
@@ -1639,7 +1640,7 @@ MonoBehaviour:
   spriteNumber: 0
   stateLevel: 0
   pause: 0
-  interval: 5
+  interval: 10000
   time: 0
 --- !u!1 &674591129
 GameObject:
