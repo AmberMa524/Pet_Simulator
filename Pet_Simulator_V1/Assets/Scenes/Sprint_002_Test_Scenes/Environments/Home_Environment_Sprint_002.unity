@@ -133,9 +133,10 @@ GameObject:
   m_Component:
   - component: {fileID: 56540815}
   - component: {fileID: 56540816}
+  - component: {fileID: 56540817}
   m_Layer: 0
   m_Name: TalkSpriteFX
-  m_TagString: Untagged
+  m_TagString: ThoughtBubble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -207,6 +208,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &56540817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 56540814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e909b915552d48428fa72b2a999e725, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 56540816}
+  spriteArray:
+  - {fileID: 21300000, guid: f035fba5a3fb11c48be96a47f123a2ec, type: 3}
+  - {fileID: 21300000, guid: b8c4023c4c5e49e4ba3710fd395615f9, type: 3}
 --- !u!1 &63591368
 GameObject:
   m_ObjectHideFlags: 0
@@ -1640,7 +1657,7 @@ MonoBehaviour:
   spriteNumber: 0
   stateLevel: 0
   pause: 0
-  interval: 10000
+  interval: 10
   time: 0
 --- !u!1 &674591129
 GameObject:

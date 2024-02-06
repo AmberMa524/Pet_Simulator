@@ -104,6 +104,7 @@ public class PetBehaviour : MonoBehaviour
                 if (prefByType.getInteraction() != null)
                 {
                     thoughtWindow.SetActive(true);
+                    GameObject.FindGameObjectWithTag("ThoughtBubble").GetComponent<ThoughtSpriteChange>().ChangeSprite(0);
                     GameObject.FindGameObjectWithTag("ThoughtElements").GetComponent<ThoughtSpriteChange>().ChangeSprite(prefByType.getInteraction().getSprite());
                 }
                 else {
@@ -128,6 +129,7 @@ public class PetBehaviour : MonoBehaviour
                 countDown = LEARNED_BEHAVIOUR_ACTION_BOUNDS;
                 thoughtWindow.SetActive(true);
                 GameObject.FindGameObjectWithTag("ThoughtElements").GetComponent<ThoughtSpriteChange>().ChangeSprite(search.getAction().getSprite());
+                GameObject.FindGameObjectWithTag("ThoughtBubble").GetComponent<ThoughtSpriteChange>().ChangeSprite(1);
                 learnedBehaviorExecuting = true;
             }
             else {
