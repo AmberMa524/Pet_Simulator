@@ -422,6 +422,7 @@ MonoBehaviour:
   stateType: Academic
   spriteNumber: 4
   stateLevel: 0
+  pause: 0
   interval: 500
   time: 0
 --- !u!1001 &204697965
@@ -515,7 +516,6 @@ GameObject:
   - component: {fileID: 285143454}
   - component: {fileID: 285143449}
   - component: {fileID: 285143455}
-  - component: {fileID: 285143456}
   m_Layer: 0
   m_Name: Test_Item
   m_TagString: Item
@@ -629,23 +629,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c934be39fa360af47bfb4578e1fd2a14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animation: 1
---- !u!114 &285143456
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 285143448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f3a317074041454d89dd2ef5c2b4e56, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   interactionID: 0
   interactionType: Taste
   interactionSubType: Sweet
+  interactionSpriteIndex: 14
   interactionName: Apple
+  ani_num: 0
 --- !u!1 &317332072
 GameObject:
   m_ObjectHideFlags: 0
@@ -1229,6 +1218,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 027081eca92e7e54fa58b38abdef433f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  locationName: Home_Environment_Sprint_001
+  roomSong: 0
 --- !u!4 &600261407
 Transform:
   m_ObjectHideFlags: 0
@@ -1292,6 +1283,7 @@ MonoBehaviour:
   stateType: Taste
   spriteNumber: 0
   stateLevel: 0
+  pause: 0
   interval: 5
   time: 0
 --- !u!1 &684023629
@@ -1524,6 +1516,7 @@ MonoBehaviour:
   stateType: Sleep
   spriteNumber: 1
   stateLevel: 0
+  pause: 0
   interval: 200
   time: 0
 --- !u!1 &1098397492
@@ -1771,6 +1764,7 @@ MonoBehaviour:
   stateType: Music
   spriteNumber: 2
   stateLevel: 0
+  pause: 0
   interval: 300
   time: 0
 --- !u!1 &1266819614
@@ -2814,6 +2808,7 @@ MonoBehaviour:
   stateType: Athletic
   spriteNumber: 3
   stateLevel: 0
+  pause: 0
   interval: 1
   time: 0
 --- !u!1 &2123021867

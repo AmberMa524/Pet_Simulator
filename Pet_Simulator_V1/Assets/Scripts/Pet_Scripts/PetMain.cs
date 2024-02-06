@@ -72,8 +72,11 @@ public class PetMain : MonoBehaviour
         Memory insertMemory = new Memory(newDate, newTime, interact);
         //Adds the memory to the pet's collection of memories.
         memories.addMemory(insertMemory);
-        //memories.printMemoryList();
-        gameObject.GetComponent<PetBehaviour>().processInteraction(interact, memories, newTime);
+        //REMOVE IF CLAUSE, ONLY NECESSARY FOR SPRINT 1 TEST, as behavior object was not a part of the pet for that one.
+        if (gameObject.GetComponent<PetBehaviour>() != null) {
+            //In any other case, process the interaction for the pet.
+            gameObject.GetComponent<PetBehaviour>().processInteraction(interact, memories, newTime);
+        }
         //gameObject.GetComponent<PetPersonality>().getPreferenceManager().printPreferences();
     }
 }

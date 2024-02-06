@@ -114,7 +114,9 @@ public class InteractiveObject : MonoBehaviour
             if (touchingPet)
             {
                 GameObject.FindGameObjectsWithTag("Pet")[0].GetComponent<PetMain>().interaction(ani_num, interaction);
-                AudioController.gameSounds[0].Play();
+                if (AudioController.gameSounds != null && AudioController.gameSounds.Length > 0) {
+                    AudioController.gameSounds[0].Play();
+                }
                 //AudioController.gameSounds[0].Stop();
             }
             touchingPet = false;

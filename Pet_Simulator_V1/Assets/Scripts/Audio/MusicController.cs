@@ -38,7 +38,10 @@ public class MusicController : MonoBehaviour
     }
 
     void Update() {
-        gameSounds[currentSound].volume = volume*0.001f;
+        if (gameSounds != null)
+        {
+            gameSounds[currentSound].volume = volume * 0.001f;
+        }
     }
 
     public static void changeVolume(int volumeAmt) {
@@ -47,53 +50,71 @@ public class MusicController : MonoBehaviour
 
     public static void StartMusic()
     {
-        isPlaying = true;
-        gameSounds[currentSound].Play();
+        if (gameSounds != null) 
+        {
+            isPlaying = true;
+            gameSounds[currentSound].Play();
+        }
     }
 
     public static void StopMusic()
     {
-         isPlaying = false;
-         gameSounds[currentSound].Stop();
+        if (gameSounds != null)
+        {
+            isPlaying = false;
+            gameSounds[currentSound].Stop();
+        }
     }
 
     public static void PauseMusic()
     {
-         isPlaying = false;
-         gameSounds[currentSound].Pause();
+        if (gameSounds != null)
+        {
+            isPlaying = false;
+            gameSounds[currentSound].Pause();
+        }
     }
 
     public static void nextSong() {
-        if (isPlaying) {
-            gameSounds[currentSound].Stop();
-        }
-
-        currentSound++;
-
-        if (currentSound < 0)
+        if (gameSounds != null)
         {
-            currentSound = gameSounds.Length - 1;
-        }
-        else if (currentSound >= gameSounds.Length) {
-            currentSound = 0;
-        }
-        if (isPlaying) {
-            gameSounds[currentSound].Play();
+            if (isPlaying)
+            {
+                gameSounds[currentSound].Stop();
+            }
+
+            currentSound++;
+
+            if (currentSound < 0)
+            {
+                currentSound = gameSounds.Length - 1;
+            }
+            else if (currentSound >= gameSounds.Length)
+            {
+                currentSound = 0;
+            }
+            if (isPlaying)
+            {
+                gameSounds[currentSound].Play();
+            }
         }
     }
 
     public static void changeSong(int newVal)
     {
-        if (isPlaying)
+        if (gameSounds != null)
         {
-            gameSounds[currentSound].Stop();
-        }
+            if (isPlaying)
+            {
+                gameSounds[currentSound].Stop();
+            }
 
-        currentSound = newVal;
+            currentSound = newVal;
 
-        if (isPlaying)
-        {
-            gameSounds[currentSound].Play();
+            if (isPlaying)
+            {
+                gameSounds[currentSound].Play();
+            }
         }
     }
 }
