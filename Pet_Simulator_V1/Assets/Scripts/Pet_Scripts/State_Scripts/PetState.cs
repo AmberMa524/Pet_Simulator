@@ -104,7 +104,7 @@ public class PetState : MonoBehaviour
         for (int i = 0; i < stateList.Count; i++)
         {
             if (interact.getType() == stateList[i].getType()) {
-                stateList[i].satiateNeed(2);
+                stateList[i].satiateNeed(stateList[i].getMaxLevel());
             }
         }
     }

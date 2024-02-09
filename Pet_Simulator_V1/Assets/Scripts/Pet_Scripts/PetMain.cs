@@ -77,6 +77,5 @@ public class PetMain : MonoBehaviour
             //In any other case, process the interaction for the pet.
             gameObject.GetComponent<PetBehaviour>().processInteraction(interact, memories, newTime);
         }
-        //gameObject.GetComponent<PetPersonality>().getPreferenceManager().printPreferences();
     }
 }

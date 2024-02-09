@@ -13,6 +13,22 @@ public class PetBehaviour : MonoBehaviour
     //Determines the bounds of time that the learned behavior may be recommended between.
     public int LEARNED_BEHAVIOUR_ACTION_BOUNDS;
 
+    //Represents the maximum number of repeated interactions
+    //per interval when determining preferences.
+    private const int PREFERENCE_FREQUENCY = 5;
+
+    //Represents the date interval in which the frequency
+    //of interactions will be checked to determine preference.
+    private const int PREFERENCE_DATE_INT = 2;
+
+    //Represents the minimum number of repeated interactions
+    //per interval when determining learned behaviors.
+    private const int LEARNED_BEHAVIOR_FREQUENCY = 3;
+
+    //Represents the date interval in which the frequency
+    //of interactions will be checked to determine learned behaviors.
+    private const int LEARNED_BEHAVIOR_DATE_INT = 3;
+
     //Returns true if a learned behavior is currently executing;
     private bool learnedBehaviorExecuting;
 
@@ -78,10 +94,60 @@ public class PetBehaviour : MonoBehaviour
 
     public void processInteraction(Interaction interact, PetMemories memory, TimeObj time)
     {
-        LearnedBehaviour newBehaviour = new LearnedBehaviour(time, interact);
-        preferenceManager.setPreference(interact);
-        learnedBehaviourManager.addLearnedBehaviour(newBehaviour);
-        learnedBehaviourManager.printBehaviours();
+        alterPreference(interact, memory);
+        //LearnedBehaviour newBehaviour = new LearnedBehaviour(time, interact);
+        //preferenceManager.setPreference(interact);
+        //learnedBehaviourManager.addLearnedBehaviour(newBehaviour);
+        //learnedBehaviourManager.printBehaviours();
+    }
+
+    /** Takes in an interaction and a memory manager object to observe this interaction against
+     previous memories of a similar interaction. If the pet has not had this interaction done
+    too frequently (five times every 2 days). and they enjoy it over their previously established preference, that preference
+    will be */
+
+    private void alterPreference(Interaction interact, PetMemories memory) {
+        Trait petPref = gameObject.GetComponent<PetPersonality>().getTrait(interact.getType());
+        DateObj endDate = memory.getLastMemory().getDate();
+        int frequency;
+        if (endDate.getMonth() == 1 && endDate.getYear() == 1 && endDate.getDay() < PREFERENCE_DATE_INT + 1)
+        {
+            frequency = memory.getMemoryList().FindAll(delegate (Memory my)
+            {
+                return my.getInteraction().getID() == interact.getID();
+            }).Count;
+        }
+        else {
+            int startDay = endDate.getDay() - PREFERENCE_DATE_INT;
+            int startYear = endDate.getYear();
+            int startMonth = endDate.getMonth();
+            if (startDay <= 0)
+            {
+                startDay = startDay += 30;
+                startMonth--;
+            }
+            if (startMonth <= 0)
+            {
+                startYear--;
+                startMonth = 12;
+            }
+            DateObj startDate = new DateObj(startDay, startMonth, startYear);
+            List<Memory> recentMemories = memory.getMemoriesByInterval(interact.getID(), startDate, endDate);
+            frequency = recentMemories.Count;
+        }
+        if (frequency < PREFERENCE_FREQUENCY)
+        {
+            preferenceManager.setPreference(interact);
+        }
+    }
+
+    /** Checks through every memory of this event and averages out the regular time
+     that this interaction may occur. Considers the frequency of this act and if it occurs frequently
+    enough (once every three days) */
+
+    private void alterBehaviour()
+    {
+
     }
 
     /** Utilizing the information found in the pet's state data, preference manager,

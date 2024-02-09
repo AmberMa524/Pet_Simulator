@@ -57,9 +57,9 @@ public class State : MonoBehaviour
     /** All needs are completely satiated at the start.
      */
 
-    void Start(){
+    void Start() {
         stateLevel = MAX_LEVEL;
-        time = interval*60;
+        time = interval * 60;
         pause = false;
     }
 
@@ -135,7 +135,7 @@ public class State : MonoBehaviour
     /** Returns level. 
     @return stateLevel*/
 
-    public int getLevel() 
+    public int getLevel()
     {
         return stateLevel;
     }
@@ -160,4 +160,17 @@ public class State : MonoBehaviour
         pause = false;
     }
 
+    /** Returns the current const maximum level.
+     @return MAX_LEVEL*/
+
+    public int getMaxLevel (){
+        return MAX_LEVEL;
+    }
+
+    /** Returns the current const minimum level.
+    @return MIN_LEVEL*/
+
+    public int getMinLevel (){
+        return MIN_LEVEL;
+    }
 }
