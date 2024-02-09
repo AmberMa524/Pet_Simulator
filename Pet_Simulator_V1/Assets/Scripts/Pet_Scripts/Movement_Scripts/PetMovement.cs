@@ -59,6 +59,7 @@ public class PetMovement : MonoBehaviour
      paused, the pet will not move.*/
     void Update()
     {
+        //Debug.Log("Is Paused: " + paused);
         if (!paused) {
             if (idle)
             {
@@ -171,5 +172,22 @@ public class PetMovement : MonoBehaviour
 
     public void unpauseMovement() {
         paused = false;
+    }
+
+    /** Changes the max boundary of the pet between environments. 
+     @param newBound
+    */
+
+    public void changeMaxBound(int newBound) {
+        maxBound = newBound;
+    }
+
+    /** Changes the min boundary of the pet between environments. 
+     @param newBound
+    */
+
+    public void changeMinBound(int newBound)
+    {
+        minBound = newBound;
     }
 }
