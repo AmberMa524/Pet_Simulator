@@ -1328,7 +1328,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 508205148}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -1516,7 +1516,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   locationName: Library_Environment_Sprint_003
   spawnPoint: {x: 0, y: -3.14, z: -71}
-  roomSong: 0
+  roomSong: 2
   maxBound: 20
   minBound: -20
 --- !u!4 &600261407

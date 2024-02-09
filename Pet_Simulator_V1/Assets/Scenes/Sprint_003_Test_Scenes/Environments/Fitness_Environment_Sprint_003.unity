@@ -1516,7 +1516,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   locationName: Fitness_Environment_Sprint_003
   spawnPoint: {x: 0, y: -3.14, z: -71}
-  roomSong: 0
+  roomSong: 3
   maxBound: 13
   minBound: -15
 --- !u!4 &600261407
