@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class InteractiveObject : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class InteractiveObject : MonoBehaviour
      * Reference for this script:
      * https://www.youtube.com/watch?v=pFpK4-EqHXQ
      */
+
+    public const int MAX_LETTER = 7;
 
     ////////////////////////////////
     //////Grabbing and Physics//////
@@ -67,12 +70,34 @@ public class InteractiveObject : MonoBehaviour
     //Represents the index of the animation that should play upon interaction.
     public int ani_num;
 
+    ////////////////////////////////
+    /////////Child Objects//////////
+    ////////////////////////////////
+    
+    //The annotation window that shows the player the stats of the item they've selected.
+
+    public GameObject annotation;
+
+    //Represents the name of the object in the annotation window.
+
+    public TMP_Text title;
+
+    //Represents the type of the object in the annotation window.
+
+    public TMP_Text type_name;
+
+    //Represents the sub type of the object in the annotation window.
+
+    public TMP_Text sub_type_name;
+
     /**
      * When the game starts the item is marked as ungrabbed. 
      */
 
     void Start()
     {
+        generateText();
+        annotation.SetActive(false);
         grabbed = false;
         touchingPet = false;
         initPos = transform.position;
@@ -93,6 +118,22 @@ public class InteractiveObject : MonoBehaviour
 
         //Debug.Log("Touching Pet" + touchingPet);
     }
+
+    /** Responds to when the player hovers over the object before it is grabbed.*/
+
+    void OnMouseOver()
+    {
+        if (!grabbed) {
+           annotation.SetActive(true);
+        }
+    }
+
+    /** Responds to when the player stops hovering.*/
+
+    void OnMouseExit() {
+        annotation.SetActive(false);
+    }
+
 
     /** 
         Gets the current position of the cursor.
@@ -148,5 +189,15 @@ public class InteractiveObject : MonoBehaviour
     void OnCollisionsExit(Collision collision) {
         //Object is no longer touching the pet.
         touchingPet = false;
+    }
+
+    /** Generates the text bubble for the item. */
+
+    private void generateText() {
+
+        title.text = interactionName;
+        type_name.text = interactionType;
+        sub_type_name.text = interactionSubType;
+
     }
 }
