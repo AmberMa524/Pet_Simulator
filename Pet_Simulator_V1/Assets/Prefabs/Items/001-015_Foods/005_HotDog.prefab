@@ -1082,10 +1082,10 @@ MonoBehaviour:
   interactionSpriteIndex: 4
   interactionName: HotDog
   ani_num: 0
-  annotation: {fileID: 0}
-  title: {fileID: 0}
-  type_name: {fileID: 0}
-  sub_type_name: {fileID: 0}
+  annotation: {fileID: 3680669654579759599}
+  title: {fileID: 3680669655605820609}
+  type_name: {fileID: 3680669654258381605}
+  sub_type_name: {fileID: 3680669654200523850}
 --- !u!1 &3680669655127873872
 GameObject:
   m_ObjectHideFlags: 0

@@ -757,10 +757,10 @@ MonoBehaviour:
   interactionSpriteIndex: 2
   interactionName: Pickle
   ani_num: 0
-  annotation: {fileID: 0}
-  title: {fileID: 0}
-  type_name: {fileID: 0}
-  sub_type_name: {fileID: 0}
+  annotation: {fileID: 8781278320183338387}
+  title: {fileID: 8781278320286578963}
+  type_name: {fileID: 8781278319769108999}
+  sub_type_name: {fileID: 8781278319590059001}
 --- !u!1 &8781278319764822427
 GameObject:
   m_ObjectHideFlags: 0

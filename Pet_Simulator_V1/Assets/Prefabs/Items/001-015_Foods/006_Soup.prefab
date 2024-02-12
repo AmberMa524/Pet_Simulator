@@ -1500,7 +1500,7 @@ MonoBehaviour:
   interactionSpriteIndex: 5
   interactionName: Soup
   ani_num: 0
-  annotation: {fileID: 0}
-  title: {fileID: 0}
-  type_name: {fileID: 0}
-  sub_type_name: {fileID: 0}
+  annotation: {fileID: 93592551577809141}
+  title: {fileID: 93592551962312987}
+  type_name: {fileID: 93592553308924000}
+  sub_type_name: {fileID: 93592551720709547}

@@ -105,7 +105,7 @@ public class InteractiveObject : MonoBehaviour
         grabbed = false;
         touchingPet = false;
         touchingTrash = false;
-        initPos = transform.position;
+        //initPos = transform.position;
         interaction = new Interaction(interactionID, interactionType, interactionName, interactionSubType, interactionSpriteIndex);
     }
 
@@ -176,8 +176,8 @@ public class InteractiveObject : MonoBehaviour
             touchingPet = false;
             touchingTrash = false;
             grabbed = false;
-            mousePosition = initPos;
-            transform.position = initPos;
+            //mousePosition = initPos;
+            //transform.position = initPos;
         }
         else
         {

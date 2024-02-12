@@ -1092,10 +1092,10 @@ MonoBehaviour:
   interactionSpriteIndex: 1
   interactionName: Chips
   ani_num: 0
-  annotation: {fileID: 0}
-  title: {fileID: 0}
-  type_name: {fileID: 0}
-  sub_type_name: {fileID: 0}
+  annotation: {fileID: 5059396667920348274}
+  title: {fileID: 5059396668465052664}
+  type_name: {fileID: 5059396667113080664}
+  sub_type_name: {fileID: 5059396668286527823}
 --- !u!1 &5059396668593262980
 GameObject:
   m_ObjectHideFlags: 0
