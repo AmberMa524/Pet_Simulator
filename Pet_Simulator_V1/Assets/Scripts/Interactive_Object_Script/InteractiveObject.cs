@@ -55,6 +55,10 @@ public class InteractiveObject : MonoBehaviour
 
     public string interactionName;
 
+    //Returns true if the pet is touching a trash can.
+
+    private bool touchingTrash;
+
     ////////////////////////////////
     /////Interaction Components/////
     ////////////////////////////////
@@ -100,6 +104,7 @@ public class InteractiveObject : MonoBehaviour
         annotation.SetActive(false);
         grabbed = false;
         touchingPet = false;
+        touchingTrash = false;
         initPos = transform.position;
         interaction = new Interaction(interactionID, interactionType, interactionName, interactionSubType, interactionSpriteIndex);
     }
@@ -146,7 +151,8 @@ public class InteractiveObject : MonoBehaviour
     }
 
     /** If the item is clicked, grabbed becomes true and the player can drag the item. If clicked again while grabbed is true
-     grabbed is false and the player drops the item. */
+     grabbed is false and the player drops the item. If the item interacts with the player or is thrown into the garbage,
+    the item will be destroyed.*/
 
     private void OnMouseDown()
     {
@@ -155,12 +161,20 @@ public class InteractiveObject : MonoBehaviour
             if (touchingPet)
             {
                 GameObject.FindGameObjectsWithTag("Pet")[0].GetComponent<PetMain>().interaction(ani_num, interaction);
-                if (AudioController.gameSounds != null && AudioController.gameSounds.Length > 0) {
+                if (AudioController.gameSounds != null && AudioController.gameSounds.Length > 0)
+                {
                     AudioController.gameSounds[0].Play();
                 }
+                Destroy(gameObject);
                 //AudioController.gameSounds[0].Stop();
             }
+            else {
+                if (touchingTrash) {
+                    Destroy(gameObject);
+                }
+            }
             touchingPet = false;
+            touchingTrash = false;
             grabbed = false;
             mousePosition = initPos;
             transform.position = initPos;
@@ -181,6 +195,9 @@ public class InteractiveObject : MonoBehaviour
         {
             touchingPet = true;
         }
+        if (collision.gameObject.tag == "Destroyer") {
+            touchingTrash = true;
+        }
     }
 
     /** Detects exits from collisions and handles them.
@@ -189,6 +206,7 @@ public class InteractiveObject : MonoBehaviour
     void OnCollisionsExit(Collision collision) {
         //Object is no longer touching the pet.
         touchingPet = false;
+        touchingTrash = false;
     }
 
     /** Generates the text bubble for the item. */
