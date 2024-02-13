@@ -29,6 +29,32 @@ public class LearnedBehaviourManager
         }
     }
 
+    /** Returns true if an interaction of the designated ID number exists.
+     @param idNum
+     @return true
+    */
+
+    private bool isIncluded(int idNum) {
+        if (learnedBehaviourList.Find(x => x.getAction().getID() == idNum) != null)
+        {
+            return true;
+        }
+        else {
+            return false;
+         }
+    }
+
+    /** Removes the learned behavior specified in the parameters from the list.
+     @param idNum
+    */
+
+    public void removeLearnedBehavior(int idNum) {
+        if (isIncluded(idNum)) {
+            int position = learnedBehaviourList.IndexOf(learnedBehaviourList.Find(x => x.getAction().getID() == idNum));
+            learnedBehaviourList.RemoveAt(position);
+        }
+    }
+
     /** This script will be used for testing purposes to ensure that the learned behaviour manager 
      is loading properly.
     */
