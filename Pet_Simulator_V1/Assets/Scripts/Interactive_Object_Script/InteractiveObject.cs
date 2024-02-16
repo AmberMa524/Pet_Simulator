@@ -128,6 +128,10 @@ public class InteractiveObject : MonoBehaviour
     {
         if (!grabbed) {
            annotation.SetActive(true);
+           if (!touchingPet && !touchingTrash)
+           {
+               gameObject.GetComponent<SpriteRenderer>().color = new Color32(99, 99, 99, 255);
+           }
         }
     }
 
@@ -135,6 +139,7 @@ public class InteractiveObject : MonoBehaviour
 
     void OnMouseExit() {
         annotation.SetActive(false);
+        gameObject.GetComponent<SpriteRenderer>().color = new Color32(255, 255, 255, 255);
     }
 
 
@@ -190,7 +195,8 @@ public class InteractiveObject : MonoBehaviour
         {
             touchingPet = true;
         }
-        else if (other.GetComponent<Collider>().tag == "Destroyer") {
+        else if (other.GetComponent<Collider>().tag == "Destroyer")
+        {
             touchingTrash = true;
         }
     }

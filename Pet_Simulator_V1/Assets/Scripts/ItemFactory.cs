@@ -125,7 +125,13 @@ public class ItemFactory : MonoBehaviour
 
     public void updatePage() {
         if (objectList != null) {
-            nameVal.text = objectList[currentPage].GetComponent<InteractiveObject>().interactionName;
+            if (objectList[currentPage].GetComponent<InteractiveObject>().interactionName.Length <= 17)
+            {
+                nameVal.text = objectList[currentPage].GetComponent<InteractiveObject>().interactionName;
+            }
+            else {
+                nameVal.text = objectList[currentPage].GetComponent<InteractiveObject>().interactionName.Substring(0, 17);
+            }
             nameVal.color = GameEnvironment.textColor;
             type.text = objectList[currentPage].GetComponent<InteractiveObject>().interactionType;
             type.color = GameEnvironment.textColor;
