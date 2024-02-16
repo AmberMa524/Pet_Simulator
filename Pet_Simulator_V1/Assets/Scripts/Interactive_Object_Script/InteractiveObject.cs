@@ -120,8 +120,6 @@ public class InteractiveObject : MonoBehaviour
         {
             transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
         }
-
-        //Debug.Log("Touching Pet" + touchingPet);
     }
 
     /** Responds to when the player hovers over the object before it is grabbed.*/
@@ -158,53 +156,51 @@ public class InteractiveObject : MonoBehaviour
     {
         if (grabbed)
         {
-            if (touchingPet)
-            {
+            if (touchingPet) {
                 GameObject.FindGameObjectsWithTag("Pet")[0].GetComponent<PetMain>().interaction(ani_num, interaction);
                 if (AudioController.gameSounds != null && AudioController.gameSounds.Length > 0)
-                {
-                    AudioController.gameSounds[0].Play();
-                }
+                  {
+                        AudioController.gameSounds[0].Play();
+                  }
                 Destroy(gameObject);
-                //AudioController.gameSounds[0].Stop();
             }
-            else {
-                if (touchingTrash) {
-                    Destroy(gameObject);
-                }
+            if (touchingTrash) {
+                AudioController.gameSounds[1].Play();
+                Destroy(gameObject);
             }
             touchingPet = false;
             touchingTrash = false;
             grabbed = false;
-            //mousePosition = initPos;
-            //transform.position = initPos;
         }
         else
         {
             mousePosition = Input.mousePosition - GetMousePos();
             grabbed = true;
+            //touchingPet = false;
+            //touchingTrash = false;
         }
     }
 
-    /** Detects collisions with objects and handles them.
-     @param collision*/
+    /** Detects collisions with triggers and handles them.
+     @param other*/
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.tag == "Pet")
+        if (other.GetComponent<Collider>().tag == "Pet")
         {
             touchingPet = true;
         }
-        if (collision.gameObject.tag == "Destroyer") {
+        else if (other.GetComponent<Collider>().tag == "Destroyer") {
             touchingTrash = true;
         }
     }
 
-    /** Detects exits from collisions and handles them.
-     @param collision.
+    /** Detects exits from triggers and handles them.
+     @param other.
     */
-    void OnCollisionsExit(Collision collision) {
-        //Object is no longer touching the pet.
+
+    void OnTriggerExit(Collider other)
+    {
         touchingPet = false;
         touchingTrash = false;
     }
