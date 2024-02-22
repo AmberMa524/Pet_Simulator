@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Trait : MonoBehaviour
+[System.Serializable]
+public class Trait
 {
     /** Represents a particular trait (academic, taste, etc.), which can contain a series of
      sub-preferences. When a sub-trait is included in the trait list, it will automatically
@@ -29,16 +30,10 @@ public class Trait : MonoBehaviour
     each sub trait.
     */
 
-    void Start() {
-        foreach (Transform child in this.transform)
-        {
-            if (child.tag == "SubTrait")
-            {
-                subTraitList.Add(child.GetComponent<SubTrait>());
-            }
-        }
-        setUpPreferenceTypes();
+    public Trait() {
+        subTraitList = new List<SubTrait>();
         randomTraitGeneration();
+        setUpPreferenceTypes();
     }
 
     /** 
@@ -59,7 +54,7 @@ public class Trait : MonoBehaviour
      sub-traits to control how the trait interacts with
     interactions from the player.*/
 
-    private void setUpPreferenceTypes()
+    public void setUpPreferenceTypes()
     {
         if (subTraitList.Count != 0) {
             for (int i = 0; i < subTraitList.Count; i++) {

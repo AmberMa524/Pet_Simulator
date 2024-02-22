@@ -5,16 +5,17 @@ using UnityEngine;
 /** Manages a calendar and a clock to work in tandum with
  each other.*/
 
+[System.Serializable]
 public class GameTime
 {
     //Represents the maximum hours in a day.
     private const int MAX_HOUR = 24;
 
     //Game Calendar for time object.
-    private GameCalendar mainGCal;
+    [SerializeField] private GameCalendar mainGCal;
 
     //Game Clock for the time object.
-    private GameClock mainGClock;
+    [SerializeField] private GameClock mainGClock;
 
     /** Instantiates the clock and the calendar for the time.*/
 

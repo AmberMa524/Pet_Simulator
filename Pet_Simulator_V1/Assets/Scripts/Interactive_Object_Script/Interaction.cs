@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Interaction
 {
     /** Represents an interaction in the game, which will be posessed by every interactable
@@ -43,6 +44,15 @@ public class Interaction
         setName(name);
         setSub(sub);
         setSprite(sprite);
+    }
+
+    public Interaction()
+    {
+        setID(-1);
+        setType("");
+        setName("");
+        setSub("");
+        setSprite(-1);
     }
 
     /** Gets the id of the interaction. 

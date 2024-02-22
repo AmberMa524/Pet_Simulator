@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class PreferenceManager
 {
 
@@ -11,7 +12,7 @@ public class PreferenceManager
 
     /** Maintains a list of preferences, which can be added to during the game.*/
 
-    private List<Preference> preferenceList;
+    [SerializeField] private List<Preference> preferenceList;
 
     /** Preference Manager default constructor. */
     public PreferenceManager()
@@ -24,7 +25,9 @@ public class PreferenceManager
     */
 
     public void addPreference(Preference newPref) {
-        preferenceList.Add(newPref);
+        if (preferenceList.Find(x => x.getType() == newPref.getType()) == null) {
+            preferenceList.Add(newPref);
+        }
     }
 
     /** Takes in an interaction and attempts to find the item on the list that matches

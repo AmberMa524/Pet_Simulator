@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class LearnedBehaviour
 {
     /** If the pet is interacted with enough, it will begin to pick up on
@@ -11,10 +12,10 @@ public class LearnedBehaviour
     */
 
     //Represents the average time action is performed.
-    private TimeObj timeStamp;
+    [SerializeField] private TimeObj timeStamp;
 
     //Represents the action learned.
-    private Interaction action;
+    [SerializeField] private Interaction action;
 
     /** Learned behavior constructor, which requires the specification of
      the time stamp and the interaction in order to be constructed.*/

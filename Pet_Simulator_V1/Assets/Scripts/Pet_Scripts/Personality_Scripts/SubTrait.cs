@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SubTrait : MonoBehaviour
+[System.Serializable]
+public class SubTrait
 {
     /** Represents a preference of a given type. Preferences will exist as children
      of a trait and will be automatically placed into their preference lists. The preference
@@ -17,6 +18,13 @@ public class SubTrait : MonoBehaviour
 
     //The type of preference it is.
     private string subTraitType;
+
+    public SubTrait() { }
+
+    public SubTrait(string name, int value) {
+        subTraitName = name;
+        subTraitValue = value;
+    }
 
     /** Sets the type of the preference.
      @param newTypeName*/

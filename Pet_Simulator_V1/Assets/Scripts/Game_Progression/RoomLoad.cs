@@ -24,6 +24,8 @@ public class RoomLoad : MonoBehaviour
     //Provides the minimum z value the pet can walk across.
     public int minBound;
 
+    public bool hasLoaded;
+
     void Start()
     {
         GameEnvironment.StartClock();
@@ -35,15 +37,17 @@ public class RoomLoad : MonoBehaviour
             GameObject.FindGameObjectWithTag("Pet").GetComponent<PetMovement>().changeMinBound(minBound);
         }
         GameEnvironment.changeLocation(locationName);
-        GameObject[] states = GameObject.FindGameObjectsWithTag("State");
-        for (int i = 0; i < states.Length; i++)
-        {
-            states[i].GetComponent<State>().unpauseState();
-        }
         GameObject.FindGameObjectWithTag("Pet").GetComponent<Rigidbody>().useGravity = true;
-        GameObject.FindGameObjectWithTag("Pet").GetComponent<PetMovement>().unpauseMovement();
         MusicController.changeSong(roomSong);
         MusicController.StartMusic();
+        hasLoaded = false;
+    }
+
+    void Update() {
+        if (!hasLoaded) {
+            GameObject.FindGameObjectWithTag("Pet").GetComponent<PetState>().unpauseStates();
+            hasLoaded = true;
+        }
     }
 
 }

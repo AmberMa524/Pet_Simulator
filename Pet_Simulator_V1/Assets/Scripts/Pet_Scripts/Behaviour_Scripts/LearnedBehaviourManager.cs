@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class LearnedBehaviourManager
 {
 
     /** Maintains a list of learned behaviours, which can be added to during the game.*/
 
-    List<LearnedBehaviour> learnedBehaviourList;
+    [SerializeField] List<LearnedBehaviour> learnedBehaviourList;
 
     /** Learned Behaviour Manager default constructor. */
     public LearnedBehaviourManager()

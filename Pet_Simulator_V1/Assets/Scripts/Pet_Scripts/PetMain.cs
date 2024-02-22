@@ -33,18 +33,12 @@ public class PetMain : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
         Instance = this;
+        Debug.Log("Current Game: " + GameEnvironment.currentGame);
+        memories = GameEnvironment.currentGame.currentMemory;
         //Gets the animator located in the GFX.
         animator = GFXController.GetComponent<Animator>();
-        memories = new PetMemories();
         DontDestroyOnLoad(gameObject);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     /** This is triggered when an interactive object interacts with the pet.

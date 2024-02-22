@@ -18,6 +18,8 @@ public class PetPersonality : MonoBehaviour
 
     void Start()
     {
+        traitList = GameEnvironment.currentGame.currentTraitList;
+        /**
         GameObject traitObject = this.gameObject.transform.Find("Traits").gameObject;
         foreach (Transform child in traitObject.transform)
         {
@@ -26,6 +28,8 @@ public class PetPersonality : MonoBehaviour
                 traitList.Add(child.GetComponent<Trait>());
             }
         }
+        */
+
         //preferenceManager.printPreferences();
     }
 
@@ -42,5 +46,13 @@ public class PetPersonality : MonoBehaviour
     public Trait getTrait(string name)
     {
         return traitList.Find(x => x.getType() == name);
+    }
+
+    /** Add trait to the trait list.
+     @param getTrait
+    */
+
+    public void addTrait(Trait getTrait) {
+        traitList.Add(getTrait);
     }
 }

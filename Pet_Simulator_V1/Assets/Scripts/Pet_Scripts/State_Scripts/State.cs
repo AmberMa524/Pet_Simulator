@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class State : MonoBehaviour
+[System.Serializable]
+public class State
 {
 
     /** Represents the state of the pet (hungry, sleepy, bored, energized, etc.), which
@@ -39,7 +40,7 @@ public class State : MonoBehaviour
     //that it takes for the state to decrement.
     public int interval;
 
-    //The amount of time that has passed between intervals.
+    //The amount of time that has passed between intervals. All needs are completely satiated at the start.
     public int time;
 
     /** State constructor. 
@@ -51,17 +52,14 @@ public class State : MonoBehaviour
         setName(name);
         setType(type);
         setSprite(num);
+        stateLevel = MAX_LEVEL;
+        time = interval * 60;
+        pause = false;
     }
 
 
     /** All needs are completely satiated at the start.
      */
-
-    void Start() {
-        stateLevel = MAX_LEVEL;
-        time = interval * 60;
-        pause = false;
-    }
 
     /** After a certain period of time, the level of 
      satisfaction in this particular need will slowly go
@@ -69,8 +67,9 @@ public class State : MonoBehaviour
     where they must communicate their need.
     */
 
-    void Update() {
-        if (!pause) {
+    public void decrement() {
+        if (!pause)
+        {
             if (time <= 0)
             {
                 if (stateLevel > MIN_LEVEL)
@@ -172,5 +171,11 @@ public class State : MonoBehaviour
 
     public int getMinLevel (){
         return MIN_LEVEL;
+    }
+
+    public void resetState() {
+        stateLevel = MAX_LEVEL;
+        time = interval * 60;
+        pause = false;
     }
 }

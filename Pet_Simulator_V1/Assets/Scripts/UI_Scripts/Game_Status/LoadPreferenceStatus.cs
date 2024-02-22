@@ -84,7 +84,13 @@ public class LoadPreferenceStatus : MonoBehaviour
             string mainText = "" + preferencePages[index][i].getType() + " Preference: ";
             if (preferencePages[index][i].getInteraction() != null)
             {
-                mainText += "" + preferencePages[index][i].getInteraction().getName();
+                if (preferencePages[index][i].getInteraction().getID() != -1)
+                {
+                    mainText += "" + preferencePages[index][i].getInteraction().getName();
+                }
+                else {
+                    mainText += " N/A";
+                }
             }
             else {
                 mainText += " N/A";

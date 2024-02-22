@@ -34,6 +34,8 @@ public class PetState : MonoBehaviour
     void Start()
     {
         animator = GFXController.GetComponent<Animator>();
+        stateList = GameEnvironment.currentGame.currentStateList;
+        /**
         GameObject stateObject = this.gameObject.transform.Find("States").gameObject;
         foreach(Transform child in stateObject.transform)
         {
@@ -41,6 +43,7 @@ public class PetState : MonoBehaviour
                 stateList.Add(child.GetComponent<State>());
             }
         }
+        */
         currentState = null;
         hideSuggestion();
         found = false;
@@ -50,6 +53,9 @@ public class PetState : MonoBehaviour
      shown. If not, the program will keep looking for the next unsatiated need.*/
     void Update()
     {
+        foreach (State st in stateList) {
+            st.decrement();
+        }
         if (found)
         {
             showSuggestion();
@@ -58,6 +64,21 @@ public class PetState : MonoBehaviour
             hideSuggestion();
         }
         getCurrentState();
+    }
+
+    public void pauseStates()
+    {
+        foreach (State st in stateList)
+        {
+            st.pauseState();
+        }
+    }
+
+    public void unpauseStates() {
+        foreach (State st in stateList)
+        {
+            st.unpauseState();
+        }
     }
 
     /** Checks which state currently has a value of 0, then shows it
@@ -123,5 +144,11 @@ public class PetState : MonoBehaviour
 
     public State getState() {
         return currentState;
+    }
+
+    /** Add new state to the state list. */
+
+    public void addState(State newState) {
+        stateList.Add(newState);
     }
 }

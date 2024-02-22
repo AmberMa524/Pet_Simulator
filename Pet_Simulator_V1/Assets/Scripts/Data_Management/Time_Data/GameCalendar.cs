@@ -5,25 +5,26 @@ using UnityEngine;
 /** Manages the current date in the game including
  days, months, and years.*/
 
+[System.Serializable]
 public class GameCalendar
 {
-   //Const determining the maximum months in a year.
-    private const int MAX_MONTHS = 12;
+    //Const determining the maximum months in a year.
+    [SerializeField] private const int MAX_MONTHS = 12;
 
     //Const determining the maximum days in a month.
-    private const int MAX_DAYS = 30;
+    [SerializeField] private const int MAX_DAYS = 30;
 
     //Years
 
-    private int timeYear;
+    [SerializeField] private int timeYear;
 
     //Months
 
-    private int timeMonth;
+    [SerializeField] private int timeMonth;
 
     //Days
 
-    private int timeDay;
+    [SerializeField] private int timeDay;
 
     /** Game calendar constructor. The default date will be
      01/01/0001. The calendar may be set to a particular date.

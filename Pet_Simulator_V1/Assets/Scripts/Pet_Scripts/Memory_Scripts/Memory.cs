@@ -2,18 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Memory
 {
     /** Represents a single memory, which includes an interaction and a time stamp.*/
 
     //This is the memory's date object.
-    private DateObj date;
+    [SerializeField] private DateObj date;
 
     //This is the memory's time object
-    private TimeObj time;
+    [SerializeField] private TimeObj time;
 
     //This is the memory's interaction object.
-    private Interaction interact;
+    [SerializeField] private Interaction interact;
 
     /** Memory constructor, which takes in a date, time and interaction
      object in order to build the memory.

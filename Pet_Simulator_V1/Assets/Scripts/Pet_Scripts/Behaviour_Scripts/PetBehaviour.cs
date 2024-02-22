@@ -48,9 +48,15 @@ public class PetBehaviour : MonoBehaviour
      developed based on traits found in the pet's data.*/
     void Start()
     {
-        interactionCatalogue = new InteractionCatalogue();
-        learnedBehaviourManager = new LearnedBehaviourManager();
-        preferenceManager = new PreferenceManager();
+        interactionCatalogue = GameEnvironment.currentGame.currentInteractionList;
+        learnedBehaviourManager = GameEnvironment.currentGame.currentLearnedBehaviourManager;
+        preferenceManager = GameEnvironment.currentGame.currentPreferenceManager;
+        foreach (Trait child in GameEnvironment.currentGame.currentTraitList)
+        {
+            preferenceManager.addPreference(new Preference(child.getType()));
+        }
+
+        /**
         GameObject traitObject = this.gameObject.transform.Find("Traits").gameObject;
         foreach (Transform child in traitObject.transform)
         {
@@ -59,6 +65,7 @@ public class PetBehaviour : MonoBehaviour
                 preferenceManager.addPreference(new Preference(child.GetComponent<Trait>().getType()));
             }
         }
+        */
         countDown = 0;
         learnedBehaviorExecuting = false;
     }

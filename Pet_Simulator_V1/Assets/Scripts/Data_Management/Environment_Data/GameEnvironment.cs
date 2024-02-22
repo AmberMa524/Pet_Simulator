@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using UnityEngine.SceneManagement;
 
 /** 
  * Manages in-game data such as time, date, and pet data.
@@ -11,8 +13,8 @@ using UnityEngine;
 
 public class GameEnvironment : MonoBehaviour
 {
-    //UNCOMMENT WHEN GAME IS FINALIZED:
-    public const string HOME_SCENE = "Home";
+    //Represents the maximum number of games in the game.
+    public const int MAXIMUM_GAMES = 3;
 
     //Singular instance of game environment.
     public static GameEnvironment Instance;
@@ -26,38 +28,71 @@ public class GameEnvironment : MonoBehaviour
     //Determines the color of the text.
     public static Color textColor;
 
+    //Determines the current game being run.
+    public static GameData currentGame;
+
+    //Determines the number of the current game
+    public static int currentGameNum;
+
+    //Gets the current game data used for the game.
+    public static List<GameData> currentGameData;
+
+    //Determines if the item bank is finished loading.
+    public static bool dataLoadFinished;
+
+    //UNCOMMENT WHEN GAME IS FINALIZED:
+    public string homeScene;
+
     private void Awake() {
         if (Instance != null) {
             Destroy(gameObject);
             return;
         }
         Instance = this;
-        //Time manager is instantiated
-        inGameTime = new GameTime();
-        //The clock is stopped by default at the start.
-        StopClock();
         //Prevents the game environment manager from being destroyed upon being loaded.
+        currentGameNum = -1;
+        dataLoadFinished = false;
         DontDestroyOnLoad(gameObject);
     }
 
     /** Sets up the starter game data if the game is new.*/
 
     public static void NewGame() {
-        //When a new game starts, the time and date is switched back to default settings.
-        inGameTime.resetTime();
-        //The location defaults to the home scene.
-        //Uncomment When Finalized
-        location = HOME_SCENE;
-        //Text color is black by default.
-        textColor = Color.black;
-        //Remove when finalized.
-        //location = "";
+        if (currentGame != null) {
+            currentGame.currentLocation = Instance.homeScene;
+            currentGame.currentTimeDate = new GameTime();
+            currentGame.currentColor = Color.black;
+            currentGame.currentInteractionList = new InteractionCatalogue();
+            currentGame.currentPreferenceManager = new PreferenceManager();
+            currentGame.currentLearnedBehaviourManager = new LearnedBehaviourManager();
+            currentGame.isEmpty = false;
+        }
+    }
+
+    public static void StartGame(int num) {
+        if (num >= 0 && num <= MAXIMUM_GAMES) {
+            currentGameNum = num;
+            currentGame = currentGameData[currentGameNum].ShallowCopy();
+            if (currentGame.isEmpty) {
+                NewGame();
+            }
+            location = currentGame.currentLocation;
+            inGameTime = currentGame.currentTimeDate;
+            textColor = currentGame.currentColor;
+            SceneManager.LoadScene(location);
+        }
     }
 
     // FixedUpdate is called once per frame and updates the time accordingly.
     void FixedUpdate()
     {
-        inGameTime.UpdateTime();
+        if (inGameTime != null) {
+           inGameTime.UpdateTime();
+        }
+        if (dataLoadFinished) {
+            loadGameDataFromFile();
+            dataLoadFinished = false;
+        }
     }
 
     /** Unpauses the in-game clock so that it may increment.*/
@@ -86,6 +121,7 @@ public class GameEnvironment : MonoBehaviour
 
     public static void terminateGame() {
         Destroy(GameObject.FindGameObjectWithTag("Pet"));
+        currentGameNum = -1;
         Debug.Log("Terminated Game");
     }
 
@@ -115,5 +151,67 @@ public class GameEnvironment : MonoBehaviour
     public static Color getColor()
     {
         return textColor;
+    }
+
+    /** Loads game data from file. */
+
+    public static void loadGameDataFromFile() {
+        string data = "";
+        try
+        {
+            data = System.IO.File.ReadAllText("./GameData.json");
+        }
+        catch (Exception e) {
+            Debug.Log("Data not found");
+            Debug.Log(e);
+        }
+        if (data != "")
+        {
+            GameDataWrapper dataCollect = JsonUtility.FromJson<GameDataWrapper>(data);
+            currentGameData = new List<GameData>();
+            for (int i = 0; i < dataCollect._GameData.Count; i++) {
+                currentGameData.Add(dataCollect._GameData[i]);
+            }
+        }
+        else {
+            currentGameData = new List<GameData>();
+            for (int i = 0; i < MAXIMUM_GAMES; i++) {
+                currentGameData.Add(new GameData());
+            }
+            saveGame();
+        }
+    }
+
+    /** Loads game data based on number 
+     @param num 
+    */
+
+    public void loadGameData(int num) {
+        if (num >= 0 && num < MAXIMUM_GAMES) {
+            currentGame = currentGameData[num];
+        }
+    }
+
+    /** Saves current game data to json file. */
+
+    public static void saveGame() {
+        if (currentGameNum >= 0 && currentGameNum < MAXIMUM_GAMES) {
+            currentGameData[currentGameNum].currentLocation = location;
+            currentGameData[currentGameNum].currentTimeDate = inGameTime;
+            currentGameData[currentGameNum].currentColor = textColor;
+            currentGameData[currentGameNum].currentInteractionList = currentGame.currentInteractionList;
+            currentGameData[currentGameNum].currentPreferenceManager = currentGame.currentPreferenceManager;
+            currentGameData[currentGameNum].currentLearnedBehaviourManager = currentGame.currentLearnedBehaviourManager;
+            currentGameData[currentGameNum].isEmpty = false;
+        }
+        GameDataWrapper dataWrap = new GameDataWrapper();
+        dataWrap._GameData = new List<GameData>();
+        foreach (GameData gd in currentGameData)
+        {
+            dataWrap._GameData.Add(gd);
+        }
+        string game = JsonUtility.ToJson(dataWrap);
+        System.IO.File.WriteAllText("./GameData.json", game);
+        loadGameDataFromFile();
     }
 }

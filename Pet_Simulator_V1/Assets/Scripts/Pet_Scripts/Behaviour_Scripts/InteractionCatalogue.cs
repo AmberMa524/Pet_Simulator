@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class InteractionCatalogue
 {
     /** A script that catalogues each unique interaction the pet has been
@@ -11,7 +12,7 @@ public class InteractionCatalogue
     */
 
     //The list of interactions included in the catalogue.
-    private List<Interaction> interactionList;
+    [SerializeField] private List<Interaction> interactionList;
 
     //Ineteraction catalogue constructor.
     public InteractionCatalogue() {

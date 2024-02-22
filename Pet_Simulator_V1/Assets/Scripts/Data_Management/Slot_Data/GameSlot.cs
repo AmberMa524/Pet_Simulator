@@ -10,49 +10,39 @@ using UnityEngine.SceneManagement;
 public class GameSlot : MonoBehaviour
 {
     //Game data to be passed on to the GameEnvironment load function.
-    public bool empty;
-    public string file_name;
-    public string time_stamp;
-    public string location;
-
-    //Time Data
-    public int hour;
-    public int minute;
-    public int second;
-
-    //Date Data
-    public int year;
-    public int month;
-    public int day;
-
+    public int slotIndex;
     //Text objects.
     public TMP_Text fn_text;
     public TMP_Text ts_text;
     public TMP_Text lc_text;
 
-    //REMOVE WHEN GAME IS FINALIZED.
-    public string TEMP_HOME_SCENE;
-
     // Start is called before the first frame update
     void Start()
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        fn_text.text = file_name;
-        ts_text.text = time_stamp;
-        lc_text.text = location;
+        if (GameEnvironment.currentGameData[slotIndex] != null) {
+            if (GameEnvironment.currentGameData[slotIndex].isEmpty)
+            {
+                fn_text.text = "[New Game]";
+                ts_text.text = "";
+                lc_text.text = "";
+            }
+            else {
+                int gameNum = slotIndex + 1;
+                fn_text.text = "Game: #" + gameNum;
+                GameTime gt = GameEnvironment.currentGameData[slotIndex].currentTimeDate;
+                GameCalendar gc = gt.getCal();
+                GameClock gcl = gt.getClock();
+                ts_text.text = "" + (gcl.getHour() / 10) + (gcl.getHour() % 10)
+                    + ":" + gcl.getMinute() / 10
+                    + gcl.getMinute() % 10 + "\n" + gc.getYear() / 1000 + gc.getYear() / 100 + gc.getYear() / 10 + gc.getYear() % 10 + "/"
+                    + gc.getMonth() / 10 + gc.getMonth() % 10 + "/"
+                    + gc.getDay() / 10 + gc.getDay() % 10;
+                lc_text.text = GameEnvironment.currentGameData[slotIndex].currentLocation;
+            }
+        }
     }
 
     public void StartGame() {
-            GameEnvironment.NewGame();
-            //UNCOMMENT WHEN GAME IS FINALIZED
-            //SceneManager.LoadScene(GameEnvironment.HOME_SCENE);
-
-            //REMOVE WHEN GAME IS FINALIZED
-            SceneManager.LoadScene(TEMP_HOME_SCENE);
+            GameEnvironment.StartGame(slotIndex);
     }
 }

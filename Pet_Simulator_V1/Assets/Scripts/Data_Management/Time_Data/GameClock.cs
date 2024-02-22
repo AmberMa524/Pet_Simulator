@@ -5,31 +5,32 @@ using UnityEngine;
 /** Manages the current time in the game including
  seconds, minutes, and hours.*/
 
+[System.Serializable]
 public class GameClock
 {
-    private const int SECOND_INCREMENT = 60;
+    [SerializeField] private const int SECOND_INCREMENT = 60;
 
     //Const determining the maximum minutes in an hour.
-    private const int MAX_MINUTES = 60;
+    [SerializeField] private const int MAX_MINUTES = 60;
 
     //Const determining the maximum seconds in a minute.
-    private const int MAX_SECONDS = 60;
+    [SerializeField] private const int MAX_SECONDS = 60;
 
     //Is clock stopped?
 
-    private bool paused;
+    [SerializeField] private bool paused;
 
     //Hours
 
-    private int timeHour;
+    [SerializeField] private int timeHour;
 
     //Minutes
 
-    private int timeMinute;
+    [SerializeField] private int timeMinute;
 
     //Seconds
 
-    private int timeSecond;
+    [SerializeField] private int timeSecond;
 
     /** Game clock constructor. The default time values
      will be set to 0. The clock will automatically be stopped upon

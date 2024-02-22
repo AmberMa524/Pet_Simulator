@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Preference
 {
     /** Represents a preferred interaction-type pair. This will be used for organizing the pet's
@@ -10,10 +11,10 @@ public class Preference
     */
 
     //Interaction object that represents the interaction that the pet prefers.
-    private Interaction interaction;
+    [SerializeField] private Interaction interaction;
 
     //String that indicates the category of interaction.
-    private string type;
+    [SerializeField] private string type;
     
     /**Default preference controller.*/
 
