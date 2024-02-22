@@ -124,6 +124,7 @@ public class PetState : MonoBehaviour
     public void processInteraction(Interaction interact) {
         for (int i = 0; i < stateList.Count; i++)
         {
+            Debug.Log("State Type-> " + stateList[i].getType() + " Interaction Type ->" + interact.getType());
             if (interact.getType() == stateList[i].getType()) {
                 stateList[i].satiateNeed(stateList[i].getMaxLevel());
             }

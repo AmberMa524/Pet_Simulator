@@ -50,7 +50,7 @@ public class GameData
         currentStateList = new List<State>();
          foreach (State st in ItemBank.stateList)
         {
-            State newState = new State(st.getName(), st.getType(), st.getSpriteNumber());
+            State newState = new State(st.getType(), st.getName(), st.getSpriteNumber(), st.interval);
             newState.resetState();
             currentStateList.Add(newState);
          }

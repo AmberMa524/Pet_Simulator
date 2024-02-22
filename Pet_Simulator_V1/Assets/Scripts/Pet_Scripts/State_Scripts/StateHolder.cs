@@ -45,6 +45,6 @@ public class StateHolder : MonoBehaviour
     public State stateItem;
 
     void Start() {
-        stateItem = new State(stateName, stateType, spriteNumber);
+        stateItem = new State(stateType, stateName, spriteNumber, interval);
     }
 }

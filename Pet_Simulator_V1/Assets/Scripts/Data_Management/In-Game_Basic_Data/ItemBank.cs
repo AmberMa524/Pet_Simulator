@@ -2,27 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class ItemBank : MonoBehaviour
 {
 
     /**This is a bank of in-game items and data. This will be used to add new traits, item sprites, etc,
      which can be grabbed from by the pet.*/
 
-    public static ItemBank Instance;
+    [SerializeField] public static ItemBank Instance;
 
-    public static List<Trait> traitList;
+    [SerializeField] public static List<Trait> traitList;
 
-    public static List<Sprite> spriteList;
+    [SerializeField] public static List<Sprite> spriteList;
 
-    public static List<State> stateList;
+    [SerializeField] public static List<State> stateList;
 
-    public List<GameObject> traitExternalList;
+    [SerializeField] public List<GameObject> traitExternalList;
 
-    public List<Sprite> spriteExternalList;
+    [SerializeField] public List<Sprite> spriteExternalList;
 
-    public List<GameObject> stateExternalList;
+    [SerializeField] public List<GameObject> stateExternalList;
 
-    private bool initialized;
+    [SerializeField] private bool initialized;
 
     // Start is called before the first frame update
     void Awake()
@@ -58,7 +59,7 @@ public class ItemBank : MonoBehaviour
             foreach (GameObject go in stateExternalList)
             {
                 State objectState = go.GetComponent<StateHolder>().stateItem;
-                State newState = new State(objectState.getName(), objectState.getType(), objectState.getSpriteNumber());
+                State newState = new State(objectState.getType(), objectState.getName(), objectState.getSpriteNumber(), objectState.interval);
                 stateList.Add(newState);
             }
             spriteList = spriteExternalList;

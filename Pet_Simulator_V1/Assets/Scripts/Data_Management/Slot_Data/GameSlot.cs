@@ -17,7 +17,7 @@ public class GameSlot : MonoBehaviour
     public TMP_Text lc_text;
 
     // Start is called before the first frame update
-    void Start()
+    void Update()
     {
         if (GameEnvironment.currentGameData[slotIndex] != null) {
             if (GameEnvironment.currentGameData[slotIndex].isEmpty)
@@ -40,9 +40,5 @@ public class GameSlot : MonoBehaviour
                 lc_text.text = GameEnvironment.currentGameData[slotIndex].currentLocation;
             }
         }
-    }
-
-    public void StartGame() {
-            GameEnvironment.StartGame(slotIndex);
     }
 }

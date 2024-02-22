@@ -214,4 +214,11 @@ public class GameEnvironment : MonoBehaviour
         System.IO.File.WriteAllText("./GameData.json", game);
         loadGameDataFromFile();
     }
+
+    public static void deleteGame(int num) {
+        if (num >= 0 && num < MAXIMUM_GAMES) {
+            currentGameData[num] = new GameData();
+            saveGame();
+        }
+    }
 }

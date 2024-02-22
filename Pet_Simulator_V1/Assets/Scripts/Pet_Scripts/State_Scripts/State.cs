@@ -12,46 +12,47 @@ public class State
 
     //Represents the maximum level a state/need would be.
 
-    public const int MAX_LEVEL = 10;
+    [SerializeField] public const int MAX_LEVEL = 10;
 
     //Repersents the minimum level a state/need would be.
 
-    public const int MIN_LEVEL = 0;
+    [SerializeField] public const int MIN_LEVEL = 0;
 
     //Refers to the name of the state.
 
-    public string stateName;
+    [SerializeField] public string stateName;
 
     //Determines the type of state/need it is.
 
-    public string stateType;
+    [SerializeField] public string stateType;
 
     //Represents the sprite that indicates
 
-    public int spriteNumber;
+    [SerializeField] public int spriteNumber;
 
     //Determines how much this need is satiated.
-    public int stateLevel;
+    [SerializeField] public int stateLevel;
 
     //If the game is paused, the state will not update.
-    public bool pause;
+    [SerializeField] public bool pause;
 
     //Represents the interval of time (in seconds)
     //that it takes for the state to decrement.
-    public int interval;
+    [SerializeField] public int interval;
 
     //The amount of time that has passed between intervals. All needs are completely satiated at the start.
-    public int time;
+    [SerializeField] public int time;
 
     /** State constructor. 
      @param type
      @param name
      @param num*/
 
-    public State(string type, string name, int num) {
+    public State(string type, string name, int num, int interv) {
         setName(name);
         setType(type);
         setSprite(num);
+        interval = interv;
         stateLevel = MAX_LEVEL;
         time = interval * 60;
         pause = false;
@@ -68,6 +69,7 @@ public class State
     */
 
     public void decrement() {
+        //Debug.Log("State:" + stateName + ", Type:" + stateType + ", Level:" + stateLevel + ", Interval:" + interval);
         if (!pause)
         {
             if (time <= 0)
