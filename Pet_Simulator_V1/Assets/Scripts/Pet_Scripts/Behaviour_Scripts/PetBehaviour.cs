@@ -55,17 +55,6 @@ public class PetBehaviour : MonoBehaviour
         {
             preferenceManager.addPreference(new Preference(child.getType()));
         }
-
-        /**
-        GameObject traitObject = this.gameObject.transform.Find("Traits").gameObject;
-        foreach (Transform child in traitObject.transform)
-        {
-            if (child.tag == "Trait")
-            {
-                preferenceManager.addPreference(new Preference(child.GetComponent<Trait>().getType()));
-            }
-        }
-        */
         countDown = 0;
         learnedBehaviorExecuting = false;
     }
@@ -73,16 +62,18 @@ public class PetBehaviour : MonoBehaviour
     /** Every second, the pet will attempt to perform a random action. */
 
     void Update() {
-        if (!learnedBehaviorExecuting)
-        {
-            performAction();
-        }
-        else {
-            countDown--;
-            if (countDown < 0) {
-                learnedBehaviorExecuting = false;
+            if (!learnedBehaviorExecuting)
+            {
+                performAction();
             }
-        }
+            else
+            {
+                countDown--;
+                if (countDown < 0)
+                {
+                    learnedBehaviorExecuting = false;
+                }
+            }
     }
 
     /** Gets the preference manager for the pet's personality.
@@ -321,6 +312,7 @@ public class PetBehaviour : MonoBehaviour
             //If not, then keep the thought bubble hidden.
             GameTime currentTime = GameEnvironment.getGameTime();
             GameClock currentClock = currentTime.getClock();
+            
             LearnedBehaviour search = learnedBehaviourManager.getBehaviourList().Find(x => x.getTime().getHour() == currentClock.getHour() && x.getTime().getMinute() == currentClock.getMinute());
             if (search != null)
             {
@@ -333,6 +325,7 @@ public class PetBehaviour : MonoBehaviour
             else {
                 thoughtWindow.SetActive(false);
             }
+            
         }
     }
 }

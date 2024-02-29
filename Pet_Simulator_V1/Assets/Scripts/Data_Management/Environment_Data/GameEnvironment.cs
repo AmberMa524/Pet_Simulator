@@ -43,6 +43,8 @@ public class GameEnvironment : MonoBehaviour
     //UNCOMMENT WHEN GAME IS FINALIZED:
     public string homeScene;
 
+    public string gameDataTitle;
+
     private void Awake() {
         if (Instance != null) {
             Destroy(gameObject);
@@ -159,7 +161,8 @@ public class GameEnvironment : MonoBehaviour
         string data = "";
         try
         {
-            data = System.IO.File.ReadAllText("./GameData.json");
+            //data = System.IO.File.ReadAllText("./GameData.json");
+            data = System.IO.File.ReadAllText("./" + Instance.gameDataTitle + ".json");
         }
         catch (Exception e) {
             Debug.Log("Data not found");
@@ -211,7 +214,8 @@ public class GameEnvironment : MonoBehaviour
             dataWrap._GameData.Add(gd);
         }
         string game = JsonUtility.ToJson(dataWrap);
-        System.IO.File.WriteAllText("./GameData.json", game);
+        //System.IO.File.WriteAllText("./GameData.json", game);
+        System.IO.File.WriteAllText("./" + Instance.gameDataTitle + ".json", game);
         loadGameDataFromFile();
     }
 

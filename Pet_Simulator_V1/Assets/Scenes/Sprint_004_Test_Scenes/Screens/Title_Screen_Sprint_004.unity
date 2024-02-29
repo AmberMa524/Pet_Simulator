@@ -585,6 +585,7 @@ MonoBehaviour:
   - {fileID: 3577269717506329221}
   - {fileID: 9158296646863631221}
   - {fileID: 1082788030612511852}
+  initialized: 0
 --- !u!4 &1115701476
 Transform:
   m_ObjectHideFlags: 0
@@ -632,6 +633,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   homeScene: Home_Environment_Sprint_004
+  gameDataTitle: GameData_Sprint_004
 --- !u!4 &1149713783
 Transform:
   m_ObjectHideFlags: 0

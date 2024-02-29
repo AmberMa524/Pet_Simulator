@@ -822,7 +822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94e6ad7b554259e4682d1ea7b15a3986, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LEARNED_BEHAVIOUR_ACTION_BOUNDS: 300
+  LEARNED_BEHAVIOUR_ACTION_BOUNDS: 900
   thoughtWindow: {fileID: 9214496720034109855}
 --- !u!65 &9214496720654538943
 BoxCollider:

@@ -27,6 +27,7 @@ public class LearnedBehaviourManager
         if (find == null)
         {
             learnedBehaviourList.Add(lb);
+            Debug.Log("Added: " + lb.getAction().getName());
         }
     }
 

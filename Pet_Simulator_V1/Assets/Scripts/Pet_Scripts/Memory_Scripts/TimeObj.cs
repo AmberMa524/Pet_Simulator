@@ -2,19 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class TimeObj
 {
     /** Represents a time stamp. This includes a second, minute, and hour.
      This is for the Memory object for cataloguing the time.*/
 
     //Represents the amount of seconds passed.
-    private int second;
+    [SerializeField] private int second;
 
     //Represents the amount of minutes passed.
-    private int minute;
+    [SerializeField] private int minute;
 
     //Represents the amount of hours passed.
-    private int hour;
+    [SerializeField] private int hour;
 
     /**Time object constructor.
      * @param sec
