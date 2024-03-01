@@ -9,14 +9,21 @@ using UnityEngine.SceneManagement;
 
 public class GameSlot : MonoBehaviour
 {
+    /** An item that visually represents a game. If blank,
+     then the data in the slot will not be found.*/
+
     //Game data to be passed on to the GameEnvironment load function.
     public int slotIndex;
-    //Text objects.
+    //Title text.
     public TMP_Text fn_text;
+    //Time Stamp text.
     public TMP_Text ts_text;
+    //Location text.
     public TMP_Text lc_text;
 
-    // Start is called before the first frame update
+    /** Fills the data in the game slot with data
+     from the designated game data.
+    */
     void Update()
     {
         if (GameEnvironment.currentGameData[slotIndex] != null) {

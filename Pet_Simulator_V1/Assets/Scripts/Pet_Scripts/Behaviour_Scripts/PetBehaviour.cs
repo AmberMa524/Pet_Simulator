@@ -76,6 +76,21 @@ public class PetBehaviour : MonoBehaviour
             }
     }
 
+    /** Initializes all attributes of the pet's behavior. */
+
+    public void initializer()
+    {
+        interactionCatalogue = GameEnvironment.currentGame.currentInteractionList;
+        learnedBehaviourManager = GameEnvironment.currentGame.currentLearnedBehaviourManager;
+        preferenceManager = GameEnvironment.currentGame.currentPreferenceManager;
+        foreach (Trait child in GameEnvironment.currentGame.currentTraitList)
+        {
+            preferenceManager.addPreference(new Preference(child.getType()));
+        }
+        countDown = 0;
+        learnedBehaviorExecuting = false;
+    }
+
     /** Gets the preference manager for the pet's personality.
      @return preferenceManager
     */

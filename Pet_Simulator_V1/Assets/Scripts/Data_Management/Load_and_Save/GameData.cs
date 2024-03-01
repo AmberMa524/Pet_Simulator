@@ -38,13 +38,15 @@ public class GameData
     //Defines if the slot is empty;
     public bool isEmpty;
 
+    /** Game data constructor. */
+
     public GameData() {
         isEmpty = true;
         currentTraitList = new List<Trait>();
         foreach (Trait tr in ItemBank.traitList)
         {
-             tr.randomTraitGeneration();
              tr.setUpPreferenceTypes();
+             tr.randomTraitGeneration();
              currentTraitList.Add(tr);
         }
         currentStateList = new List<State>();
@@ -62,9 +64,22 @@ public class GameData
         currentColor = Color.black;
         }
 
+    /** Produces a shallow copy of the game's data to another game object.*/
+
     public GameData ShallowCopy()
     {
         return (GameData)this.MemberwiseClone();
+    }
+
+    /** Generates a randomized personality for the pet. Only use this
+     if the game is newly generated. Traits should remain consistent for
+    the entirety of a game.*/
+
+    public void generatePersonality() {
+        for (int i = 0; i < currentTraitList.Count; i++) { 
+            currentTraitList[i].setUpPreferenceTypes();
+            currentTraitList[i].randomTraitGeneration();
+        }
     }
 }
 

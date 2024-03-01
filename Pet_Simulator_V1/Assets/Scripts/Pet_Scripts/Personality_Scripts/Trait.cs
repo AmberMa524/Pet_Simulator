@@ -10,8 +10,6 @@ public class Trait
     be set with the trait's type.*/
 
     //The level of each sub trait will be a number between 0-99
-    //If it is between 0-49, the pet will dislike it.
-    //If it is between 50-99, the pet will like it.
     //The sub trait contains the highest score, that will be the
     //pet's personal favourite subtrait.
     public const int PREFERENCE_RANGE = 100;
@@ -32,8 +30,8 @@ public class Trait
 
     public Trait() {
         subTraitList = new List<SubTrait>();
-        randomTraitGeneration();
         setUpPreferenceTypes();
+        randomTraitGeneration();
     }
 
     /** 

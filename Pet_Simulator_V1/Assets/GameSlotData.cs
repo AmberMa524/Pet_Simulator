@@ -5,17 +5,26 @@ using TMPro;
 
 public class GameSlotData : MonoBehaviour
 {
+    /** Controls the UI tools used to play and delete selected
+     games in a game load/save menu.*/
+
+    //The title of the game in the window.
     public TMP_Text titletext;
 
+    //The game window, which contains the play button and delete button.
     public GameObject gameWindow;
 
+    //Represents the current game selected.
     public int currentSelectedGame;
 
-    // Start is called before the first frame update
+    //The window should be closed at the start.
     void Start()
     {
         exitGame();
     }
+
+    /**Opens the window to the given game data, whose ID was given in the num param.
+     * @param num*/
 
     public void openGame(int num) {
         currentSelectedGame = num;
@@ -24,11 +33,15 @@ public class GameSlotData : MonoBehaviour
         titletext.text = "Game #" + gameNum;
     }
 
+    /**Starts the game that has been selected if valid.*/
+
     public void startGame() {
         if (currentSelectedGame != -1) {
             GameEnvironment.StartGame(currentSelectedGame);
         }
     }
+
+    /** Deletes the game that has been selected if valid. */
 
     public void deleteGame() {
         if (currentSelectedGame != -1)
@@ -37,6 +50,8 @@ public class GameSlotData : MonoBehaviour
         }
         exitGame();
     }
+
+    /** Closes the game window. */
 
     public void exitGame(){
         currentSelectedGame = -1;

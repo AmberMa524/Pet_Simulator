@@ -40,10 +40,16 @@ public class GameEnvironment : MonoBehaviour
     //Determines if the item bank is finished loading.
     public static bool dataLoadFinished;
 
-    //UNCOMMENT WHEN GAME IS FINALIZED:
+    //Refers to the first in-game scene.
     public string homeScene;
 
+    //The title of the game data file where all the data will be held.
     public string gameDataTitle;
+
+    /** Initializes the basic information.
+     Program waits until update function to 
+    load the game data, as the basic utility data
+    may not be initialized yet.*/
 
     private void Awake() {
         if (Instance != null) {
@@ -68,8 +74,13 @@ public class GameEnvironment : MonoBehaviour
             currentGame.currentPreferenceManager = new PreferenceManager();
             currentGame.currentLearnedBehaviourManager = new LearnedBehaviourManager();
             currentGame.isEmpty = false;
+            currentGame.generatePersonality();
         }
     }
+
+    /** Starts up a brand new game based on the game index specified in 
+     * num. If the number is valid, then the game is loaded.
+     @param num*/
 
     public static void StartGame(int num) {
         if (num >= 0 && num <= MAXIMUM_GAMES) {
@@ -81,11 +92,18 @@ public class GameEnvironment : MonoBehaviour
             location = currentGame.currentLocation;
             inGameTime = currentGame.currentTimeDate;
             textColor = currentGame.currentColor;
+            if (GameObject.FindGameObjectWithTag("Pet") != null) {
+                GameObject.FindGameObjectWithTag("Pet").GetComponent<PetPersonality>().initializer();
+                GameObject.FindGameObjectWithTag("Pet").GetComponent<PetBehaviour>().initializer();
+                GameObject.FindGameObjectWithTag("Pet").GetComponent<PetMain>().initializer();
+                GameObject.FindGameObjectWithTag("Pet").GetComponent<PetState>().initializer();
+            }
             SceneManager.LoadScene(location);
         }
     }
 
-    // FixedUpdate is called once per frame and updates the time accordingly.
+    /** If the data hasn't finished loading, it will be loaded.
+     If the game time is not a null value, it will be updated.*/
     void FixedUpdate()
     {
         if (inGameTime != null) {
@@ -219,10 +237,26 @@ public class GameEnvironment : MonoBehaviour
         loadGameDataFromFile();
     }
 
+    /** Deletes the game identified by int num. If the game
+     number is out of bounds, it will not be accepted. If deletion
+     occurs during the game, measures are taken to ensure that the
+     data file deletes without deleting the current game they are playing.
+    @param num
+    */
+
     public static void deleteGame(int num) {
         if (num >= 0 && num < MAXIMUM_GAMES) {
+            bool duringGame = false;
+            if (num == currentGameNum)
+            {
+                duringGame = true;
+                currentGameNum = -1;
+            }
             currentGameData[num] = new GameData();
             saveGame();
+            if (duringGame) {
+                currentGameNum = num;
+            }
         }
     }
 }

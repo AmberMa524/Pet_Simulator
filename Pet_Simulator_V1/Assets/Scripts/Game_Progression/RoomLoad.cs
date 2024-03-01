@@ -24,7 +24,15 @@ public class RoomLoad : MonoBehaviour
     //Provides the minimum z value the pet can walk across.
     public int minBound;
 
+    //Determines if the room has fully loaded (along with the pet).
     public bool hasLoaded;
+
+    /** 
+     The in-game clock should start up again, as well as the music.
+      If the room has changed between scenes, then the information on
+      how far the pet can move in that room should change.
+      The pet should be able to use gravity again.
+     */
 
     void Start()
     {
@@ -42,6 +50,8 @@ public class RoomLoad : MonoBehaviour
         MusicController.StartMusic();
         hasLoaded = false;
     }
+
+    /** If the pet has loaded, the room will unpause their states.*/
 
     void Update() {
         if (!hasLoaded) {

@@ -16,21 +16,18 @@ public class PetPersonality : MonoBehaviour
     /** Collects all of the traits from the pet and
      puts them into the trait list.*/
 
+    /** Initialize trait list to match the one of the game's. */
+
     void Start()
     {
         traitList = GameEnvironment.currentGame.currentTraitList;
-        /**
-        GameObject traitObject = this.gameObject.transform.Find("Traits").gameObject;
-        foreach (Transform child in traitObject.transform)
-        {
-            if (child.tag == "Trait")
-            {
-                traitList.Add(child.GetComponent<Trait>());
-            }
-        }
-        */
+    }
 
-        //preferenceManager.printPreferences();
+    /** Initializes all of the traits in the trait list.*/
+    
+    public void initializer()
+    {
+        traitList = GameEnvironment.currentGame.currentTraitList;
     }
 
     /** Returns the list of traits.

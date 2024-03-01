@@ -34,11 +34,18 @@ public class PetMain : MonoBehaviour
             return;
         }
         Instance = this;
-        Debug.Log("Current Game: " + GameEnvironment.currentGame);
+        //Debug.Log("Current Game: " + GameEnvironment.currentGame);
         memories = GameEnvironment.currentGame.currentMemory;
         //Gets the animator located in the GFX.
         animator = GFXController.GetComponent<Animator>();
         DontDestroyOnLoad(gameObject);
+    }
+
+    /** Initializes the pet's current memories. */
+
+    public void initializer()
+    {
+        memories = GameEnvironment.currentGame.currentMemory;
     }
 
     /** This is triggered when an interactive object interacts with the pet.

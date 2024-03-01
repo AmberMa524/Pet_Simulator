@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class MusicController : MonoBehaviour
 {
+    /** Code that manages all in-game music. */
+
     /** 
      * Sources for code.
      * 
@@ -14,11 +16,25 @@ public class MusicController : MonoBehaviour
         https://answers.unity.com/questions/1320031/having-multiple-audio-sources-in-a-single-object.html
     */
 
+    public const int MAX_VOLUME = 50;
+
+    //The music controller instance.
     public static MusicController Instance;
+
+    //An array of music included in the game.
     public static AudioSource[] gameSounds;
+
+    //Represents the current music.
     public static int currentSound;
+
+    //Represents whether or not the music is playing.
     public static bool isPlaying;
+
+    //Represents the volume control for the music.
     public static int volume;
+
+    /** Creates the first and only instance of the music controller.
+     Sets volume to default value.*/
 
     private void Awake()
     {
@@ -33,9 +49,11 @@ public class MusicController : MonoBehaviour
         gameSounds = gameObject.GetComponents<AudioSource>();
         currentSound = 0;
         isPlaying = false;
-        volume = 50;
+        volume = MAX_VOLUME;
         DontDestroyOnLoad(gameObject);
     }
+
+    /** Updates the music so that the volume is appropriate.*/
 
     void Update() {
         if (gameSounds != null)
@@ -48,6 +66,8 @@ public class MusicController : MonoBehaviour
         volume = volumeAmt;
     }
 
+    /** Starts the in-game music. */
+
     public static void StartMusic()
     {
         if (gameSounds != null) 
@@ -56,6 +76,8 @@ public class MusicController : MonoBehaviour
             gameSounds[currentSound].Play();
         }
     }
+
+    /** Stops the in-game music. */
 
     public static void StopMusic()
     {
@@ -66,6 +88,8 @@ public class MusicController : MonoBehaviour
         }
     }
 
+    /** Pauses the in-game music. */
+
     public static void PauseMusic()
     {
         if (gameSounds != null)
@@ -74,6 +98,8 @@ public class MusicController : MonoBehaviour
             gameSounds[currentSound].Pause();
         }
     }
+
+    /** Starts the in-game music. */
 
     public static void nextSong() {
         if (gameSounds != null)
@@ -99,6 +125,8 @@ public class MusicController : MonoBehaviour
             }
         }
     }
+
+    /** Changes the in-game music. */
 
     public static void changeSong(int newVal)
     {

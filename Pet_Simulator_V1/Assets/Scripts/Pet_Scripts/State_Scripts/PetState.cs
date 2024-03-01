@@ -35,15 +35,6 @@ public class PetState : MonoBehaviour
     {
         animator = GFXController.GetComponent<Animator>();
         stateList = GameEnvironment.currentGame.currentStateList;
-        /**
-        GameObject stateObject = this.gameObject.transform.Find("States").gameObject;
-        foreach(Transform child in stateObject.transform)
-        {
-            if (child.tag == "State") {
-                stateList.Add(child.GetComponent<State>());
-            }
-        }
-        */
         currentState = null;
         hideSuggestion();
         found = false;
@@ -66,6 +57,18 @@ public class PetState : MonoBehaviour
         getCurrentState();
     }
 
+    /** Initializes the state list and all the state attributes.*/
+
+    public void initializer()
+    {
+        stateList = GameEnvironment.currentGame.currentStateList;
+        currentState = null;
+        hideSuggestion();
+        found = false;
+    }
+
+    /** Pauses the development of a pet's states. */
+
     public void pauseStates()
     {
         foreach (State st in stateList)
@@ -73,6 +76,8 @@ public class PetState : MonoBehaviour
             st.pauseState();
         }
     }
+
+    /** Unpauses the development of a pet's states. */
 
     public void unpauseStates() {
         foreach (State st in stateList)
