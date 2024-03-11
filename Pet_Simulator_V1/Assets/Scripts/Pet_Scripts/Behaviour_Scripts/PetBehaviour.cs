@@ -48,9 +48,13 @@ public class PetBehaviour : MonoBehaviour
      developed based on traits found in the pet's data.*/
     void Start()
     {
+        //Grabs the interaction catalogue from the GameEnvironment.
         interactionCatalogue = GameEnvironment.currentGame.currentInteractionList;
+        //Grabs the learned behavior manager from the GameEnvironment.
         learnedBehaviourManager = GameEnvironment.currentGame.currentLearnedBehaviourManager;
+        //Grabs the preference manager from the GameEnvironment.
         preferenceManager = GameEnvironment.currentGame.currentPreferenceManager;
+        //Sets up the preference manager with the necessary preference types based on traits.
         foreach (Trait child in GameEnvironment.currentGame.currentTraitList)
         {
             preferenceManager.addPreference(new Preference(child.getType()));
@@ -62,12 +66,16 @@ public class PetBehaviour : MonoBehaviour
     /** Every second, the pet will attempt to perform a random action. */
 
     void Update() {
+            //If the program is still in the process of executing an action,
+            //do not perform a new action.
             if (!learnedBehaviorExecuting)
             {
                 performAction();
             }
             else
             {
+            //Count down of the cooldown time for the player, which terminates once
+            //the learned behavior has stopped executing.
                 countDown--;
                 if (countDown < 0)
                 {
@@ -80,9 +88,13 @@ public class PetBehaviour : MonoBehaviour
 
     public void initializer()
     {
+        //Grabs the interaction catalogue from the GameEnvironment.
         interactionCatalogue = GameEnvironment.currentGame.currentInteractionList;
+        //Grabs the learned behavior manager from the GameEnvironment.
         learnedBehaviourManager = GameEnvironment.currentGame.currentLearnedBehaviourManager;
+        //Grabs the preference manager from the GameEnvironment.
         preferenceManager = GameEnvironment.currentGame.currentPreferenceManager;
+        //Sets up the preference manager with the necessary preference types based on traits.
         foreach (Trait child in GameEnvironment.currentGame.currentTraitList)
         {
             preferenceManager.addPreference(new Preference(child.getType()));
@@ -113,7 +125,9 @@ public class PetBehaviour : MonoBehaviour
     {
         //Should automatically reject the addition if it has been already added.
         interactionCatalogue.addInteraction(interact);
+        //Alters preference based on the pet's memories and the interaction itself.
         alterPreference(interact, memory);
+        //Alters behavior based on the pet's memories and the interaction itself.
         alterBehaviour(interact, memory);
     }
 
@@ -127,11 +141,18 @@ public class PetBehaviour : MonoBehaviour
     */
 
     private void alterPreference(Interaction interact, PetMemories memory) {
+        //Gets a list of all the pet's previous interactions of the same type as the parameter interaction.
         List<Interaction> tempList = interactionCatalogue.getInteractionList().FindAll(x => x.getType() == interact.getType());
+        //Running ID representing the greatest valid preference.
         int runningID = -1;
+        //Running maximum representing the highest enjoyment value of a valid preference.
         int maximum = -1;
+        //Loops through all previous interactions of this type.
         for (int i = 0; i < tempList.Count; i++) {
+            //Checks if preference is valid.
             if (isValidPreference(tempList[i], memory)) {
+                //If it is the first valid preference, set the running ID and maximum
+                //to that of this preference.
                 if (runningID == -1 && maximum == -1)
                 {
                     SubTrait petPref = gameObject.GetComponent<PetPersonality>().getTrait(tempList[i].getType()).getSubTrait(tempList[i].getSub());
@@ -139,6 +160,9 @@ public class PetBehaviour : MonoBehaviour
                     maximum = petPref.getValue();
                 }
                 else {
+                    //If it is not the first valid preference, check if this preference is
+                    //greater than the current top preference. If it is, then replace the current
+                    //top running preference ID and value to this one's.
                     SubTrait petPref = gameObject.GetComponent<PetPersonality>().getTrait(tempList[i].getType()).getSubTrait(tempList[i].getSub());
                     if (petPref.getValue() > maximum) {
                         runningID = tempList[i].getID();
@@ -147,6 +171,8 @@ public class PetBehaviour : MonoBehaviour
                 }
             }
         }
+        //If the running ID and maximum is found, then set the preference for this type to be
+        //that of the one that has been found.
         if (runningID != -1 && maximum != -1) {
             preferenceManager.setPreference(tempList.Find(x => x.getID() == runningID));
         }
@@ -160,9 +186,11 @@ public class PetBehaviour : MonoBehaviour
     */
 
     private bool isValidPreference(Interaction interact, PetMemories memory) {
-        SubTrait petPref = gameObject.GetComponent<PetPersonality>().getTrait(interact.getType()).getSubTrait(interact.getSub());
+        //Get the date of the last memory made (the current date).
         DateObj endDate = memory.getLastMemory().getDate();
+        //Represents the frequency of the interaction.
         int frequency;
+        //If the end date is the first date in the calendar (0001, 01, 01), then the frequency will be counted by the amount of times its' been done in total.
         if (endDate.getMonth() == 1 && endDate.getYear() == 1 && endDate.getDay() < PREFERENCE_DATE_INT + 1)
         {
             frequency = memory.getMemoryList().FindAll(delegate (Memory my)
@@ -172,28 +200,43 @@ public class PetBehaviour : MonoBehaviour
         }
         else
         {
+            //If the end date is ot the first day on the calendar, then find the start date.
+            //Day is calculated by subtracting the designated date interval from the current date.
             int startDay = endDate.getDay() - PREFERENCE_DATE_INT;
+            //The year should be about 0-1 years apart.
             int startYear = endDate.getYear();
+            //The month should be about 0-1 months apart.
             int startMonth = endDate.getMonth();
+            //if the start day is 0 or less, than the start date should be
+            //the previous month. The maximum days per month value will be added to the start day (start day
+            //should be negative in this case, which should turn it into a positive value within the bounds of 1-30).
             if (startDay <= 0)
             {
                 startDay = startDay += 30;
                 startMonth--;
             }
+            //If the start month is 0 or less, than the start date should be the
+            //previous year. The maximum months per year will be added to the start month (start month
+            //should be negative in this case, which should turn it into a positive value within the bounds of 1-12).
             if (startMonth <= 0)
             {
                 startYear--;
                 startMonth = 12;
             }
+            //With the start day, month, and year calculated, the start date can be calculated.
             DateObj startDate = new DateObj(startDay, startMonth, startYear);
+            //The start date is used to collect all recent memories.
             List<Memory> recentMemories = memory.getMemoriesByInterval(interact.getID(), startDate, endDate);
+            //The number of memories found within this interval are counted.
             frequency = recentMemories.Count;
         }
+        //If the frequency is within the the bounds of the specified frequency, then it is valid.
         if (frequency < PREFERENCE_FREQUENCY)
         {
             return true;
         }
         else {
+            //If it is over the bounds of the specified frequency, then it is invalid.
             return false;
         }
     }
@@ -249,9 +292,11 @@ public class PetBehaviour : MonoBehaviour
     */
 
     private bool isValidBehavior(Interaction interact, PetMemories memory) {
-        SubTrait petPref = gameObject.GetComponent<PetPersonality>().getTrait(interact.getType()).getSubTrait(interact.getSub());
+        //Get the date of the last memory made (the current date).
         DateObj endDate = memory.getLastMemory().getDate();
+        //Represents the frequency of the interaction.
         int frequency;
+        //If the end date is the first date in the calendar (0001, 01, 01), then the frequency will be counted by the amount of times its' been done in total.
         if (endDate.getMonth() == 1 && endDate.getYear() == 1 && endDate.getDay() < LEARNED_BEHAVIOR_DATE_INT + 1)
         {
             frequency = memory.getMemoryList().FindAll(delegate (Memory my)
@@ -261,29 +306,44 @@ public class PetBehaviour : MonoBehaviour
         }
         else
         {
+            //If the end date is ot the first day on the calendar, then find the start date.
+            //Day is calculated by subtracting the designated date interval from the current date.
             int startDay = endDate.getDay() - LEARNED_BEHAVIOR_DATE_INT;
+            //The year should be about 0-1 years apart.
             int startYear = endDate.getYear();
+            //The months should be about 0-1 months apart.
             int startMonth = endDate.getMonth();
+            //if the start day is 0 or less, than the start date should be
+            //the previous month. The maximum days per month value will be added to the start day (start day
+            //should be negative in this case, which should turn it into a positive value within the bounds of 1-30).
             if (startDay <= 0)
             {
                 startDay = startDay += 30;
                 startMonth--;
             }
+            //If the start month is 0 or less, than the start date should be the
+            //previous year. The maximum months per year will be added to the start month (start month
+            //should be negative in this case, which should turn it into a positive value within the bounds of 1-12).
             if (startMonth <= 0)
             {
                 startYear--;
                 startMonth = 12;
             }
+            //With the start day, month, and year calculated, the start date can be calculated.
             DateObj startDate = new DateObj(startDay, startMonth, startYear);
+            //The start date is used to collect all recent memories.
             List<Memory> recentMemories = memory.getMemoriesByInterval(interact.getID(), startDate, endDate);
+            //The number of memories found within this interval are counted.
             frequency = recentMemories.Count;
         }
+        //If the frequency is greater than or equal to the minimum frequency, it is valid.
         if (frequency >= LEARNED_BEHAVIOR_FREQUENCY)
         {
             return true;
         }
         else
         {
+            //If it is less than the minimum frequency, then it is invalid.
             return false;
         }
     }
@@ -292,7 +352,7 @@ public class PetBehaviour : MonoBehaviour
      and learned behavior manager, the pet will suggest an interaction type. */
 
     public void performAction() {
-        //Check if a pet has entered a state
+        //Check if a pet has entered a state.
         PetState currentPetState = gameObject.GetComponent<PetState>();
         if (currentPetState.isFound())
         {
@@ -312,10 +372,12 @@ public class PetBehaviour : MonoBehaviour
                     GameObject.FindGameObjectWithTag("ThoughtElements").GetComponent<ThoughtSpriteChange>().ChangeSprite(prefByType.getInteraction().getSprite());
                 }
                 else {
+                    //If not, then don't show it.
                     thoughtWindow.SetActive(false);
                 }
             }
             else {
+                //If not then don't show it.
                 thoughtWindow.SetActive(false);
             }
             //If so, then show the thought window with the preferred interaction on it.
@@ -325,10 +387,14 @@ public class PetBehaviour : MonoBehaviour
             //If the pet is not in a state, then check if there is a regularly scheduled behavior for that
             //time. If so, then show the interaction for that learned behavior on the thought bubble for the time designated in the learned_behavior action bounds.
             //If not, then keep the thought bubble hidden.
+
+            //Get the current time in the game.
             GameTime currentTime = GameEnvironment.getGameTime();
             GameClock currentClock = currentTime.getClock();
             
+            //Search the learned behavior manager to find if there is a behavior scheduled for that particular hour and minute.
             LearnedBehaviour search = learnedBehaviourManager.getBehaviourList().Find(x => x.getTime().getHour() == currentClock.getHour() && x.getTime().getMinute() == currentClock.getMinute());
+            //If the search is successful, perform the learned behavior action by having the pet suggest the action.
             if (search != null)
             {
                 countDown = LEARNED_BEHAVIOUR_ACTION_BOUNDS;
@@ -338,6 +404,7 @@ public class PetBehaviour : MonoBehaviour
                 learnedBehaviorExecuting = true;
             }
             else {
+                //If the search is not successful do not show the window at all.
                 thoughtWindow.SetActive(false);
             }
             

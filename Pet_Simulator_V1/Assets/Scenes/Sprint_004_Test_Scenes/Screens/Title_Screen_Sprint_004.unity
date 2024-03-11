@@ -579,6 +579,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4421ddd87b6253d4f900c774c9ca78f2, type: 3}
   - {fileID: 21300000, guid: 9028125b1c332f342bb3bddb0193b90f, type: 3}
   - {fileID: 21300000, guid: 75e3caafaa4a90444beb512a06b94756, type: 3}
+  - {fileID: 21300000, guid: 1bfc3fc50aa0189488a943596564bdea, type: 3}
+  - {fileID: 21300000, guid: 6b9ce914f66f9ad4e80dff7f6fd5867f, type: 3}
   stateExternalList:
   - {fileID: 5849099938825463077}
   - {fileID: 2956495722347810239}

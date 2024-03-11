@@ -2,27 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/** Manages the current date in the game including
- days, months, and years.*/
+/** Since this data will need to be saved and loaded,
+ this data is serializable.*/
 
 [System.Serializable]
 public class GameCalendar
 {
+    /** Manages the current date in the game including
+    days, months, and years.*/
+
     //Const determining the maximum months in a year.
     [SerializeField] private const int MAX_MONTHS = 12;
 
     //Const determining the maximum days in a month.
     [SerializeField] private const int MAX_DAYS = 30;
 
-    //Years
+    //Represents the years gone by.
 
     [SerializeField] private int timeYear;
 
-    //Months
+    //Represents the months gone by.
 
     [SerializeField] private int timeMonth;
 
-    //Days
+    //Represents the days gone by.
 
     [SerializeField] private int timeDay;
 

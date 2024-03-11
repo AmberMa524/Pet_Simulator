@@ -5,17 +5,8 @@ using UnityEngine;
 public class StateHolder : MonoBehaviour
 {
 
-    /** Represents the state of the pet (hungry, sleepy, bored, energized, etc.), which
-     represents a need for the pet to do something (eat, sleep, etc.). The state of the pet
-    will change its' behavior (the pet will communicate this need if it gets low enough). */
-
-    //Represents the maximum level a state/need would be.
-
-    public const int MAX_LEVEL = 10;
-
-    //Repersents the minimum level a state/need would be.
-
-    public const int MIN_LEVEL = 0;
+    /** Holds a state, which will be passed into the item bank. All of the information of
+     this state type will be written into the item bank for later use in the game as a template.*/
 
     //Refers to the name of the state.
 
@@ -29,19 +20,11 @@ public class StateHolder : MonoBehaviour
 
     public int spriteNumber;
 
-    //Determines how much this need is satiated.
-    public int stateLevel;
-
-    //If the game is paused, the state will not update.
-    public bool pause;
-
     //Represents the interval of time (in seconds)
     //that it takes for the state to decrement.
     public int interval;
 
-    //The amount of time that has passed between intervals. All needs are completely satiated at the start.
-    public int time;
-
+    //The state that is contained by this state holder.
     public State stateItem;
 
     void Start() {

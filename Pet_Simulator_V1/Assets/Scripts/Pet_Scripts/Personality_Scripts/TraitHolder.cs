@@ -4,29 +4,22 @@ using UnityEngine;
 
 public class TraitHolder : MonoBehaviour
 {
-    /** Represents a particular trait (academic, taste, etc.), which can contain a series of
-      sub-preferences. When a sub-trait is included in the trait list, it will automatically
-     be set with the trait's type.*/
+    /**A gameobject that contains the data of a trait, which will
+     be passed down to the item bank. This is a measure to help
+     modularize the process of adding trait objects for any future changes
+    that may come. The trait object should contain children to represent subtraits
+    for this trait. The subtraits will be included in the item bank as well.
+    */
 
-    //The level of each sub trait will be a number between 0-99
-    //If it is between 0-49, the pet will dislike it.
-    //If it is between 50-99, the pet will like it.
-    //The sub trait contains the highest score, that will be the
-    //pet's personal favourite subtrait.
-    public const int PREFERENCE_RANGE = 100;
-
-    //The type of the trait, this determines the type of the trait
-    //and affects how interactions will affect the pet.
+    /** String value that must be applied to the trait, which represents what
+     type the trait is.*/
     public string type;
 
+    //This represents the trait object created by this trait holder.
     public Trait mainTrait;
 
     //Represents the list of subtraits contained inside the pet.
     public List<SubTrait> subTraitList;
-
-    //public List<string> nameList;
-
-    //public List<int> valueList;
 
     /** Gets all of the subtrait objects in the trait object,
      and places them in the subTraitList. Once that is done, the
@@ -47,12 +40,13 @@ public class TraitHolder : MonoBehaviour
                 SubTrait newSubtrait = new SubTrait(child.GetComponent<SubTraitHolder>().subTraitName, child.GetComponent<SubTraitHolder>().subTraitValue);
                 newSubtrait.setType(type);
                 subTraitList.Add(newSubtrait);
-                //nameList.Add(child.GetComponent<SubTraitHolder>().subTraitName);
-                //valueList.Add(child.GetComponent<SubTraitHolder>().subTraitValue);
             }
         }
         mainTrait.subTraitList = subTraitList;
     }
+
+    /** Returns the trait object created in this trait holder.
+     @return mainTrait*/
 
     public Trait getTrait() {
         return mainTrait;

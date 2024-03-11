@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class PetMain : MonoBehaviour
 {
-    /** This is the pet's main controller, which will control its memories.
-     * The interactions and calculations will be performed through this script.*/
+    /** This is the pet's main controller, which holds all of the pet's memories.
+     * The pet contains a single function, which takes in interactions so that the
+     pet's preferences and behaviors change accordingly with the player's interactions
+     with them.*/
 
-    //Animation Values
-    //Manipulates animations for pet.
+    /**Controls the pet's animations.*/
     private Animator animator;
-    //Gets the GFX object that controls the sprite animations.
+    /** The gameobject that holds all of the pet's sprites/animations */
     public GameObject GFXController;
 
     //A pet memory object to hold all of the pet's memories.
@@ -36,7 +37,7 @@ public class PetMain : MonoBehaviour
         Instance = this;
         //Debug.Log("Current Game: " + GameEnvironment.currentGame);
         memories = GameEnvironment.currentGame.currentMemory;
-        //Gets the animator located in the GFX.
+        //Gets the animator located in the GFXController object.
         animator = GFXController.GetComponent<Animator>();
         DontDestroyOnLoad(gameObject);
     }

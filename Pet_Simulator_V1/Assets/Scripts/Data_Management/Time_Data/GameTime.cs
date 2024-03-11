@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/** Manages a calendar and a clock to work in tandum with
- each other.*/
+/** Since this data will need to be saved and loaded,
+ this data is serializable.*/
 
 [System.Serializable]
 public class GameTime
 {
+    /** Manages a calendar and a clock to work in tandum with
+    each other.*/
+
     //Represents the maximum hours in a day.
     private const int MAX_HOUR = 24;
 
@@ -23,6 +26,9 @@ public class GameTime
         mainGCal = new GameCalendar();
         mainGClock = new GameClock();
     }
+
+    /** Updates the time by incrementing the clock.
+     if the clock hits the maximum hour, a day will pass.*/
 
     public void UpdateTime() {
         mainGClock.UpdateClock();
@@ -47,7 +53,7 @@ public class GameTime
         return mainGClock;
     }
 
-    /** */
+    /** Resets the time and date to defaults.*/
     public void resetTime() {
         mainGClock.resetClock();
         mainGCal.resetCalendar();

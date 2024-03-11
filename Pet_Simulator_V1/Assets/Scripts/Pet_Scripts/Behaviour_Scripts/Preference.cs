@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/** Since this data will need to be saved and loaded,
+ this data is serializable.*/
+
 [System.Serializable]
 public class Preference
 {
@@ -16,7 +19,7 @@ public class Preference
     //String that indicates the category of interaction.
     [SerializeField] private string type;
     
-    /**Default preference controller.*/
+    /**Default preference controller constructor.*/
 
     public Preference() {
 

@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class MusicController : MonoBehaviour
 {
-    /** Code that manages all in-game music. */
 
     /** 
+     * Code that manages all in-game music.
+     * 
      * Sources for code.
      * 
      * Maintaining data persistance between scenes was done using this resource:
@@ -16,6 +17,7 @@ public class MusicController : MonoBehaviour
         https://answers.unity.com/questions/1320031/having-multiple-audio-sources-in-a-single-object.html
     */
 
+    //The maximum volume that the game's audio can be.
     public const int MAX_VOLUME = 50;
 
     //The music controller instance.
@@ -61,6 +63,8 @@ public class MusicController : MonoBehaviour
             gameSounds[currentSound].volume = volume * 0.001f;
         }
     }
+
+    /** Changes the volume of the game. */
 
     public static void changeVolume(int volumeAmt) {
         volume = volumeAmt;

@@ -2,9 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/** NOTE: Change this later so that each state is its own entity and can be
- executed abstractly. */
-
 public class PetMovement : MonoBehaviour
 {
     /** This is the script that controls the pet's movement depending on the state of the

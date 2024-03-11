@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/** Manages the current time in the game including
- seconds, minutes, and hours.*/
+/** Since this data will need to be saved and loaded,
+ this data is serializable.*/
 
 [System.Serializable]
 public class GameClock
 {
+    /** Manages the current time in the game including
+     seconds, minutes, and hours.*/
+
     [SerializeField] private const int SECOND_INCREMENT = 60;
 
     //Const determining the maximum minutes in an hour.
@@ -16,19 +19,19 @@ public class GameClock
     //Const determining the maximum seconds in a minute.
     [SerializeField] private const int MAX_SECONDS = 60;
 
-    //Is clock stopped?
+    //Represents if the clock is stopped or not.
 
     [SerializeField] private bool paused;
 
-    //Hours
+    //Represents the hours gone by.
 
     [SerializeField] private int timeHour;
 
-    //Minutes
+    //Represents the minutes gone by.
 
     [SerializeField] private int timeMinute;
 
-    //Seconds
+    //Represents the seconds gone by.
 
     [SerializeField] private int timeSecond;
 

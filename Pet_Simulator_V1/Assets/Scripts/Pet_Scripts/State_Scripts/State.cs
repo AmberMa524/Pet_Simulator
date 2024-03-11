@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/** Since this data will need to be saved and loaded,
+ this data is serializable.*/
+
 [System.Serializable]
 public class State
 {
@@ -174,6 +177,8 @@ public class State
     public int getMinLevel (){
         return MIN_LEVEL;
     }
+
+    /** Resets the state to its default settings.*/
 
     public void resetState() {
         stateLevel = MAX_LEVEL;

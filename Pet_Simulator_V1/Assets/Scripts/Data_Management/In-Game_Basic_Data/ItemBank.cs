@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/** Since this data will need to be saved and loaded,
+ this data is serializable.*/
+
 [System.Serializable]
 public class ItemBank : MonoBehaviour
 {
@@ -25,7 +28,8 @@ public class ItemBank : MonoBehaviour
 
     [SerializeField] private bool initialized;
 
-    // Start is called before the first frame update
+    /**Initializes itself.*/
+
     void Awake()
     {
         // start of new code
@@ -39,6 +43,13 @@ public class ItemBank : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    /** If the item bank has not initialized, grab all of the
+     *traits, subtraits, states and the sprite list to establish
+     *the item bank.
+     *
+     *NOTE:: This must be established first before the game data loads. 
+    */
+
     void Update() {
         if (!initialized) {
             traitList = new List<Trait>();
@@ -47,9 +58,7 @@ public class ItemBank : MonoBehaviour
                 Trait newTrait = new Trait();
                 newTrait.type = go.GetComponent<TraitHolder>().type;
                 newTrait.subTraitList = new List<SubTrait>();
-                //Debug.Log(go.GetComponent<TraitHolder>().subTraitList.Count);
                 foreach (SubTrait st in go.GetComponent<TraitHolder>().subTraitList) {
-                    //Debug.Log(st.getName());
                     SubTrait newSubtrait = new SubTrait(st.getName(), st.getValue());
                     newTrait.subTraitList.Add(newSubtrait);
                 }

@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class SubTraitHolder : MonoBehaviour
 {
-    /** Represents a preference of a given type. Preferences will exist as children
-      of a trait and will be automatically placed into their preference lists. The preference
-     value should be given a distinct number indicating how much the pet favours activities or
-     items of this specific type. */
+    /** Holds the data of a subtrait, which will be used to log data into an item bank.
+     The name and value can be altered, but the type cannot.*/
 
     //The name of the sub trait.
     public string subTraitName;

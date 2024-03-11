@@ -176,16 +176,17 @@ public class GameEnvironment : MonoBehaviour
     /** Loads game data from file. */
 
     public static void loadGameDataFromFile() {
+        //Try to find the data.
         string data = "";
         try
         {
-            //data = System.IO.File.ReadAllText("./GameData.json");
             data = System.IO.File.ReadAllText("./" + Instance.gameDataTitle + ".json");
         }
         catch (Exception e) {
             Debug.Log("Data not found");
             Debug.Log(e);
         }
+        //If data is found, then add it to the current game data.
         if (data != "")
         {
             GameDataWrapper dataCollect = JsonUtility.FromJson<GameDataWrapper>(data);
@@ -195,6 +196,7 @@ public class GameEnvironment : MonoBehaviour
             }
         }
         else {
+            //If data is not found, then add new game data and save it to the file.
             currentGameData = new List<GameData>();
             for (int i = 0; i < MAXIMUM_GAMES; i++) {
                 currentGameData.Add(new GameData());
@@ -216,6 +218,7 @@ public class GameEnvironment : MonoBehaviour
     /** Saves current game data to json file. */
 
     public static void saveGame() {
+        //If a game is currently playing, save the game data for it.
         if (currentGameNum >= 0 && currentGameNum < MAXIMUM_GAMES) {
             currentGameData[currentGameNum].currentLocation = location;
             currentGameData[currentGameNum].currentTimeDate = inGameTime;
@@ -225,15 +228,21 @@ public class GameEnvironment : MonoBehaviour
             currentGameData[currentGameNum].currentLearnedBehaviourManager = currentGame.currentLearnedBehaviourManager;
             currentGameData[currentGameNum].isEmpty = false;
         }
+        //The data will be wrapped to prepare it for writing.
         GameDataWrapper dataWrap = new GameDataWrapper();
+        //Game data list will be added to the data wrap.
         dataWrap._GameData = new List<GameData>();
+        //Loop through all the current in-game data and save
+        //all of the game data to the wrapper.
         foreach (GameData gd in currentGameData)
         {
             dataWrap._GameData.Add(gd);
         }
+        //Convert the data wrapper to a string.
         string game = JsonUtility.ToJson(dataWrap);
-        //System.IO.File.WriteAllText("./GameData.json", game);
+        //Write the string to the file.
         System.IO.File.WriteAllText("./" + Instance.gameDataTitle + ".json", game);
+        //Reload all of the data again to keep the data up to date.
         loadGameDataFromFile();
     }
 
@@ -245,6 +254,7 @@ public class GameEnvironment : MonoBehaviour
     */
 
     public static void deleteGame(int num) {
+        //If the game number is valid, then delete that game.
         if (num >= 0 && num < MAXIMUM_GAMES) {
             bool duringGame = false;
             if (num == currentGameNum)

@@ -7,7 +7,10 @@ public class InteractiveObject : MonoBehaviour
 {
 
     /** 
-     * Controls the dragging and dropping of items in the scene.
+     * This is the code for the interactive objects in the game.
+     * Each one contains an interactive object, which gets passed between
+     * the interactive object to the pet if the player clicks on the pet with
+     * the item grabbed.
      * 
      * Reference for this script:
      * https://www.youtube.com/watch?v=pFpK4-EqHXQ
@@ -105,7 +108,6 @@ public class InteractiveObject : MonoBehaviour
         grabbed = false;
         touchingPet = false;
         touchingTrash = false;
-        //initPos = transform.position;
         interaction = new Interaction(interactionID, interactionType, interactionName, interactionSubType, interactionSpriteIndex);
     }
 
@@ -181,8 +183,6 @@ public class InteractiveObject : MonoBehaviour
         {
             mousePosition = Input.mousePosition - GetMousePos();
             grabbed = true;
-            //touchingPet = false;
-            //touchingTrash = false;
         }
     }
 

@@ -9,16 +9,20 @@ public class UILoad : MonoBehaviour
      If the state is paused and the pet's physics is temporarily
     shut down. */
 
+    //If the UI has loaded, return true.
     public bool hasLoaded;
+
+    /** If the UI loads, stop the pet and the in-game clock.*/
 
     void Start()
     {
         GameEnvironment.StopClock();
         GameObject.FindGameObjectWithTag("Pet").GetComponent<Rigidbody>().useGravity = false;
         GameObject.FindGameObjectWithTag("Pet").GetComponent<PetMovement>().pauseMovement();
-        //MusicController.PauseMusic();
-        //GameObject.FindGameObjectWithTag("Pet").GetComponent<PetBehaviour>().getPreferenceManager().printPreferences();
     }
+
+    /** If the pet has loaded, then pause the pet's states, then confirm that
+     the pet has loaded.*/
 
     void Update() {
         if (!hasLoaded)
@@ -28,9 +32,13 @@ public class UILoad : MonoBehaviour
         }
     }
 
+    /** Changes the scene to the current location. */
+
     public void returnToGame() {
         SceneManager.LoadScene(GameEnvironment.getLocation());
     }
+
+    /** Stops the game and music, then loads the game data.*/
 
     public void terminateGame() {
         GameEnvironment.terminateGame();
