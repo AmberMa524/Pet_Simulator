@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class StateUIButt : MonoBehaviour
 {
-    /** Controls the State UI. */
+    /** Controls the State UI in the game UI. This UI can flip through all of the pet's states
+     and reveal how fulfilled each state currently is using meters.*/
 
     //The state window.
     public GameObject stateWindow;
@@ -51,6 +52,9 @@ public class StateUIButt : MonoBehaviour
         petStates.Add(petState4);
         petStates.Add(petState5);
     }
+
+    /** Update the values and displays every second in case the values change.
+     This is a necessity, as the pet's state is constantly changing.*/
 
     void Update() {
         updateStateValues();

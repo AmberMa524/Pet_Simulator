@@ -11,7 +11,7 @@ public class ColorButton : MonoBehaviour
     //Represents the color of the button.
     private Color thisColor;
 
-    // Start is called before the first frame update
+    //The color value changes to the color of the button.
     void Start()
     {
         thisColor = gameObject.GetComponent<Image>().color;
@@ -21,7 +21,5 @@ public class ColorButton : MonoBehaviour
 
     public void changeTextColor() {
         GameEnvironment.changeColor(thisColor);
-        //Color currentColor = GameEnvironment.getColor();
-        //Debug.Log("RBA: " + currentColor.r + ", " + currentColor.g + " , " + currentColor.b);
     }
 }

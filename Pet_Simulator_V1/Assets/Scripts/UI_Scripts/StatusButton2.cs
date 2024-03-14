@@ -4,10 +4,18 @@ using UnityEngine;
 
 public class StatusButton2 : MonoBehaviour
 {
+    /** Activates the status buttons on the in-game UI.*/
+
+    //Represents the status buttons.
     public GameObject statusButtons;
+
+    //Represents the window with the pet status data.
     public GameObject petStatus;
+
+    //Represents the window with the game status data.
     public GameObject gameStatus;
-    //public GameObject backButt;
+
+    /** Activates the status buttons. Deactivates the game and pet status windows.*/
 
     public void activateStatus()
     {
@@ -16,10 +24,14 @@ public class StatusButton2 : MonoBehaviour
         deactivateGame();
     }
 
+    /** Deactivates the status buttons.*/
+
     public void deactivateStatus()
     {
         statusButtons.SetActive(false);
     }
+
+    /** Activates the pet status window. Deactivates the status buttons and game status window.*/
 
     public void activatePet()
     {
@@ -28,10 +40,14 @@ public class StatusButton2 : MonoBehaviour
         deactivateGame();
     }
 
+    /** Deactivates the pet status window.*/
+
     public void deactivatePet()
     {
         petStatus.SetActive(false);
     }
+
+    /** Activates the game status window. Deactivates the status buttons and pet status window.*/
 
     public void activateGame()
     {
@@ -40,11 +56,14 @@ public class StatusButton2 : MonoBehaviour
         deactivateStatus();
     }
 
+    /** Deactivates the game status window.*/
+
     public void deactivateGame()
     {
         gameStatus.SetActive(false);
-        //backButt.SetActive(false);
     }
+
+    /**Deactivates all three game objects.*/
 
     public void deactivateAll() {
         deactivatePet();

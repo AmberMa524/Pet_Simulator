@@ -5,11 +5,14 @@ using TMPro;
 
 public class ClockCalendar : MonoBehaviour
 {
-    //Represents the Text
+    /** Controls the data shown on the in-game clock. */
+
+    //Represents the text on the in-game clock.
     public TMP_Text clock_Text;
+    //Represents the text on the in-game calendar.
     public TMP_Text calendar_Text;
 
-    // Update is called once per frame
+    /** Checks the in-game clock, and updates based on the data found.*/
     void Update()
     {
         GameTime gt = GameEnvironment.getGameTime();
