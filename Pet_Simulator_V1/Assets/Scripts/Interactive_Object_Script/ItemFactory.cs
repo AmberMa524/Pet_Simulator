@@ -35,6 +35,10 @@ public class ItemFactory : MonoBehaviour
     //Represents the image attribute of the object selected.
     public Image imageVal;
 
+    //For items that contain a time constrainer, the bounds may be displayed as a warning to
+    //the player in case they want to use it.
+    public TMP_Text bounds;
+
     //Represents whether or not the factory has been clicked.
     private bool clicked;
 
@@ -138,6 +142,25 @@ public class ItemFactory : MonoBehaviour
             subtype.text = objectList[currentPage].GetComponent<InteractiveObject>().interactionSubType;
             subtype.color = GameEnvironment.textColor;
             imageVal.sprite = objectList[currentPage].GetComponent<SpriteRenderer>().sprite;
+            if (objectList[currentPage].GetComponent<TimeConstrainer>() != null)
+            {
+                    bounds.text = "Item Can Only Be Used Between: "
+                    + (objectList[currentPage].GetComponent<TimeConstrainer>().hourConstrictA / 10)
+                    + (objectList[currentPage].GetComponent<TimeConstrainer>().hourConstrictA % 10)
+                    + ":"
+                    + (objectList[currentPage].GetComponent<TimeConstrainer>().minuteConstrictA / 10)
+                    + (objectList[currentPage].GetComponent<TimeConstrainer>().minuteConstrictA % 10)
+                    + "-"
+                    + (objectList[currentPage].GetComponent<TimeConstrainer>().hourConstrictB / 10)
+                    + (objectList[currentPage].GetComponent<TimeConstrainer>().hourConstrictB % 10)
+                    + ":"
+                    + (objectList[currentPage].GetComponent<TimeConstrainer>().minuteConstrictB / 10)
+                    + (objectList[currentPage].GetComponent<TimeConstrainer>().minuteConstrictB % 10);
+            }
+            else
+            {
+                bounds.text = "Can Be Used At Any Time";
+            }
         }
     }
 

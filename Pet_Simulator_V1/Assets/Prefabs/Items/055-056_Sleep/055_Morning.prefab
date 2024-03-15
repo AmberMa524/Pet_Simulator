@@ -552,6 +552,7 @@ GameObject:
   - component: {fileID: 3476462994514612016}
   - component: {fileID: 3476462994514611976}
   - component: {fileID: 3476462994514611982}
+  - component: {fileID: 2744048240246187729}
   m_Layer: 0
   m_Name: 055_Morning
   m_TagString: Item
@@ -678,6 +679,23 @@ MonoBehaviour:
   title: {fileID: 3476462994054906170}
   type_name: {fileID: 3476462995905839999}
   sub_type_name: {fileID: 3476462995501380071}
+--- !u!114 &2744048240246187729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3476462994514611977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c81daf50369271f4088456c1165ac9eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hourConstrictA: 1
+  minuteConstrictA: 0
+  hourConstrictB: 11
+  minuteConstrictB: 59
+  isValidBound: 0
 --- !u!1 &3476462994610925532
 GameObject:
   m_ObjectHideFlags: 0

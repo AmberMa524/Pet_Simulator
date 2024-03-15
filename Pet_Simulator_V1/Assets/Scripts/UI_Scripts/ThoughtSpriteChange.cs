@@ -24,11 +24,17 @@ public class ThoughtSpriteChange : MonoBehaviour
     //An array of sprites in the sprite object.
     public List<Sprite> spriteArray;
 
+    //Dictates whether sprites are taken from item bank.
+    public bool takeFromItemBank;
+
     /** Creates the instance of the sprite changer, which grabs
      all the sprites in the thought elements object, then places them
     in the array.*/
     void Start()
     {
+        if (takeFromItemBank) {
+            spriteArray = ItemBank.spriteList;
+        }
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 

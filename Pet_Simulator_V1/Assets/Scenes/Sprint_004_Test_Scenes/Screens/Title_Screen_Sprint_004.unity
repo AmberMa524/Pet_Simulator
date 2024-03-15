@@ -1959,10 +1959,7 @@ MonoBehaviour:
   stateName: Hungry
   stateType: Taste
   spriteNumber: 0
-  stateLevel: 0
-  pause: 0
   interval: 10
-  time: 0
   stateItem:
     stateName: 
     stateType: 
@@ -2180,10 +2177,7 @@ MonoBehaviour:
   stateName: Inspired
   stateType: Academic
   spriteNumber: 4
-  stateLevel: 0
-  pause: 0
   interval: 60
-  time: 0
   stateItem:
     stateName: 
     stateType: 
@@ -2495,10 +2489,7 @@ MonoBehaviour:
   stateName: Sleepy
   stateType: Sleep
   spriteNumber: 1
-  stateLevel: 0
-  pause: 0
   interval: 150
-  time: 0
   stateItem:
     stateName: 
     stateType: 
@@ -2960,10 +2951,7 @@ MonoBehaviour:
   stateName: Bored
   stateType: Music
   spriteNumber: 2
-  stateLevel: 0
-  pause: 0
   interval: 100
-  time: 0
   stateItem:
     stateName: 
     stateType: 
@@ -3187,10 +3175,7 @@ MonoBehaviour:
   stateName: Energetic
   stateType: Athletic
   spriteNumber: 3
-  stateLevel: 0
-  pause: 0
   interval: 40
-  time: 0
   stateItem:
     stateName: 
     stateType: 

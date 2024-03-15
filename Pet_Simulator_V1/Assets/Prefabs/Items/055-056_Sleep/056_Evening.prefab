@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2929890924402565982}
   - component: {fileID: 1337921840107032593}
   - component: {fileID: 5771931877537198392}
+  - component: {fileID: 947850734957420195}
   m_Layer: 0
   m_Name: 056_Evening
   m_TagString: Item
@@ -139,6 +140,23 @@ MonoBehaviour:
   title: {fileID: 3570864937929397998}
   type_name: {fileID: 2226992974759103952}
   sub_type_name: {fileID: 7423827264156629873}
+--- !u!114 &947850734957420195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354762070152923245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c81daf50369271f4088456c1165ac9eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hourConstrictA: 12
+  minuteConstrictA: 0
+  hourConstrictB: 23
+  minuteConstrictB: 59
+  isValidBound: 0
 --- !u!1 &656955811916978410
 GameObject:
   m_ObjectHideFlags: 0
