@@ -20,11 +20,15 @@ public class ItemBank : MonoBehaviour
 
     [SerializeField] public static List<State> stateList;
 
+    [SerializeField] public static List<Tutorial> tutorialList;
+
     [SerializeField] public List<GameObject> traitExternalList;
 
     [SerializeField] public List<Sprite> spriteExternalList;
 
     [SerializeField] public List<GameObject> stateExternalList;
+
+    [SerializeField] public List<GameObject> tutorialExternalList;
 
     [SerializeField] private bool initialized;
 
@@ -70,6 +74,13 @@ public class ItemBank : MonoBehaviour
                 State objectState = go.GetComponent<StateHolder>().stateItem;
                 State newState = new State(objectState.getType(), objectState.getName(), objectState.getSpriteNumber(), objectState.interval);
                 stateList.Add(newState);
+            }
+            tutorialList = new List<Tutorial>();
+            foreach (GameObject go in tutorialExternalList)
+            {
+                Tutorial objectTutorial = go.GetComponent<TutorialHolder>().getTutorial();
+                Tutorial newTutorial = new Tutorial(objectTutorial.getName(), objectTutorial.getScreens());
+                tutorialList.Add(newTutorial);
             }
             spriteList = spriteExternalList;
             initialized = true;
