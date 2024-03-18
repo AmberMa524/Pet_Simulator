@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TutorialUIHandler : MonoBehaviour
 {
@@ -39,7 +40,6 @@ public class TutorialUIHandler : MonoBehaviour
     }
 
     void Update() {
-        Debug.Log(tutorialPage.Count);
         updateTutorialValues();
         updateDisplay();
     }
@@ -78,7 +78,10 @@ public class TutorialUIHandler : MonoBehaviour
                 }
                 else
                 {
+                    tutorialObjects[i].SetActive(true);
                     tutorialObjects[i].GetComponent<TMP_Text>().text = currentTutorialList[i].getName();
+                    tutorialObjects[i].GetComponent<TutorialData>().tutorialIndex = i + (pageNum*tutorialObjects.Count);
+                    //Debug.Log(currentTutorialList[i].getName() + ":" + (i + (pageNum * tutorialObjects.Count)));
                 }
             }
         }

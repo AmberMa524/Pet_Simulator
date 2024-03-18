@@ -403,6 +403,7 @@ GameObject:
   - component: {fileID: 253342116}
   - component: {fileID: 253342115}
   - component: {fileID: 253342114}
+  - component: {fileID: 253342117}
   m_Layer: 5
   m_Name: Tutorial_001
   m_TagString: Untagged
@@ -473,7 +474,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 253342115}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 253342117}
+        m_TargetAssemblyTypeName: TutorialData, Assembly-CSharp
+        m_MethodName: changeToTutorialScreen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &253342115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -571,6 +584,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 253342112}
   m_CullTransparentMesh: 1
+--- !u!114 &253342117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 253342112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa80bed59527b8642ae31f41b165af2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialIndex: 0
+  tutorialValue:
+    name: 
+    screens: []
+  tutorialScreenTitle: Tutorial_Player
 --- !u!1 &282585593
 GameObject:
   m_ObjectHideFlags: 0
@@ -1625,6 +1655,7 @@ GameObject:
   - component: {fileID: 890525781}
   - component: {fileID: 890525779}
   - component: {fileID: 890525780}
+  - component: {fileID: 890525784}
   m_Layer: 5
   m_Name: Tutorial_003
   m_TagString: Untagged
@@ -1689,7 +1720,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 890525781}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 890525784}
+        m_TargetAssemblyTypeName: TutorialData, Assembly-CSharp
+        m_MethodName: changeToTutorialScreen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &890525781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1807,6 +1850,23 @@ RectTransform:
   m_AnchoredPosition: {x: -325, y: -100}
   m_SizeDelta: {x: 750, y: 50}
   m_Pivot: {x: 0, y: 0.5}
+--- !u!114 &890525784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 890525778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa80bed59527b8642ae31f41b165af2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialIndex: 0
+  tutorialValue:
+    name: 
+    screens: []
+  tutorialScreenTitle: Tutorial_Player
 --- !u!1 &951755000
 GameObject:
   m_ObjectHideFlags: 0
@@ -1924,7 +1984,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 72872261}
+  m_TargetGraphic: {fileID: 951755002}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -2031,6 +2091,7 @@ GameObject:
   - component: {fileID: 1251992517}
   - component: {fileID: 1251992516}
   - component: {fileID: 1251992515}
+  - component: {fileID: 1251992518}
   m_Layer: 5
   m_Name: Tutorial_002
   m_TagString: Untagged
@@ -2101,7 +2162,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1251992516}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1251992518}
+        m_TargetAssemblyTypeName: TutorialData, Assembly-CSharp
+        m_MethodName: changeToTutorialScreen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1251992516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2199,6 +2272,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1251992513}
   m_CullTransparentMesh: 1
+--- !u!114 &1251992518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251992513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa80bed59527b8642ae31f41b165af2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialIndex: 0
+  tutorialValue:
+    name: 
+    screens: []
+  tutorialScreenTitle: Tutorial_Player
 --- !u!1 &1462995980
 GameObject:
   m_ObjectHideFlags: 0

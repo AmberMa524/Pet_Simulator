@@ -46,6 +46,9 @@ public class GameEnvironment : MonoBehaviour
     //The title of the game data file where all the data will be held.
     public string gameDataTitle;
 
+    //Represents the current tutorial that has been selected.
+    public static Tutorial currentTutorial;
+
     /** Initializes the basic information.
      Program waits until update function to 
     load the game data, as the basic utility data
@@ -60,6 +63,7 @@ public class GameEnvironment : MonoBehaviour
         //Prevents the game environment manager from being destroyed upon being loaded.
         currentGameNum = -1;
         dataLoadFinished = false;
+        currentTutorial = null;
         DontDestroyOnLoad(gameObject);
     }
 
