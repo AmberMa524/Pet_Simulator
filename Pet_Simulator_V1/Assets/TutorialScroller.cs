@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class TutorialScroller : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class TutorialScroller : MonoBehaviour
 
     //Represents the screen the player will return to.
     public string returnPage;
+
+    //Indicates the page number to the player visually.
+    public TMP_Text pageNumber;
 
     /** Initializes the page number to the first tutorial page.*/
     void Start()
@@ -57,6 +61,7 @@ public class TutorialScroller : MonoBehaviour
 
     private void updatePage() {
         gameObject.GetComponent<Image>().sprite = GameEnvironment.currentTutorial.getScreens()[currentPage];
+        pageNumber.text = "" + (currentPage + 1);
     }
 
     /** Returns the player to the tutorial screen and wipes the tutorial value
