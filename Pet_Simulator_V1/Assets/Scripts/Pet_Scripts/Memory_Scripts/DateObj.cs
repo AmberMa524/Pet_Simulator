@@ -69,7 +69,7 @@ public class DateObj
      @param mt
     */
 
-    public void setMinute(int mt)
+    public void setMonth(int mt)
     {
         month = mt;
     }
